@@ -1,1 +1,3 @@
-# bayesian_methods
+# Bayesian Methods
+
+- Gaussian Mixture Model and Expectation Maximation Algorithm
