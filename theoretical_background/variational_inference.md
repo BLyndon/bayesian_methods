@@ -4,11 +4,33 @@ For many practical models evaluating P(Z|X) is infeasible and approximation sche
 
 In variational inference, the probability distribution $P(X)$ is modeled by another distribution Q(X) in two steps. First, the functional class of $Q(X)$ is reduced to simple functional forms and afterwards we want to find the best model function $Q^*(X)$ within this class.
 
+Before we turn to a specific restriction of the family of distributions, we derive a composition of the log marginal probability.
 
+Assuming a fully Bayesian model, where all parameters stochastic with given priors. Since they can be absorbed into $Z$ they no longer apear explicitly.
 
-#### Variational Free Energy 
+The log marginal probability is given by
 
-In isolated many particle systems the energy of the system is defined by the state **x** the interaction **J** between the degrees of freedom E(**x**, **J**). Given an inverse temperature, the probability of finding the system in state **x** is described by
+$\log P(X) = \log \left( \langle p(X|Z) \rangle_{q(Z)}\right) \ge \langle \log p(X|Z) \rangle_{q(Z)}$,
+
+where we used Jensen's inequality. By subtraction, the gap of the inequality turns out to be the Kullback-Leibler divergence and we end up with the following decomposition 
+
+$\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)$,
+
+where
+
+$\mathcal L (q) = \langle \log p(X|Z) \rangle_{q(Z)}$
+
+$\mathcal{KL}(q||p) = - \langle \log(\frac{p(Z|X)}{q(Z)})\rangle_{q(Z)}$
+
+Maximizing the lower bound $\mathcal L(q)$ w.r.t. $q$ is equivalent to minimizing the gap, i.e. the Kullback-Leibler divergence. This is achieved by setting the prior $p(Z)$ equal to the posterior $p(Z|X)$.
+
+Since $p(Z|X)$ is expected to be intractable now, at this point the approximation starts. As mentioned above, we restrict the family of distributions $q(Z)$. The goal will be a restriction leading to tractable distributions.
+
+Before we present examples, we derive variational inference from a physical perspective in the next section.
+
+#### Variational Free Energy
+
+In isolated many particle systems the energy of the system E(**x**, **J**) is determined by the state **x** the interaction **J** between the degrees of freedom. Given an inverse temperature, the probability of finding the system in state **x** is described by
 
 $P(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_P(\beta, J)}$
 
