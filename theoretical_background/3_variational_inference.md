@@ -2,25 +2,27 @@
 
 For many practical models evaluating P(Z|X) is infeasible and approximation schemes are required. There are mainly two types of approximation schemes. On the one hand there are stochastic approximation schemes such as Markov Chain Monte Carlo, but here we introduce a deterministic approximation scheme called *variational inference*. 
 
-In variational inference, the probability distribution $p(X)$ is modeled by another distribution Q(X) in two steps. First, the functional class of $q(X)$ is reduced to simple functional forms and afterwards we want to find the best model function $q^*(X)$ within this class.
+In variational inference, the probability distribution $p(X)$ is modeled by another distribution $q(X)$ in two steps. First, the functional class of $q(X)$ is reduced to simple functional forms and afterwards we want to find the best model function $q^*(X)$ within this class.
 
 Before we turn to a specific restriction of the family of distributions, we derive a composition of the log marginal probability.
 
-Assuming a fully Bayesian model, where all parameters stochastic with given priors. Since they can be absorbed into $Z$ they no longer apear explicitly.
+Assuming a fully Bayesian model, where all parameters are stochastic with given priors. Since they can be absorbed into $Z$ they no longer appear explicitly.
 
 The log marginal probability is given by
 
-$\log p(X) = \log \left( \langle p(X|Z) \rangle_{q(Z)}\right) \ge \langle \log p(X|Z) \rangle_{q(Z)}$,
+$$
+\log p(X) = \log \left( \langle p(X|Z) \rangle_{q(Z)}\right) \ge \langle \log p(X|Z) \rangle_{q(Z)}
+$$,
 
 where we used Jensen's inequality. By subtraction, the gap of the inequality turns out to be the Kullback-Leibler divergence and we end up with the following decomposition 
 
-$\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)$,
+$$\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)$$,
 
 where
 
-$\mathcal L (q) = \langle \log p(X|Z) \rangle_{q(Z)}$
++ $\mathcal L (q) = \langle \log p(X|Z) \rangle_{q(Z)}$
 
-$\mathcal{KL}(q||p) = - \langle \log(\frac{p(Z|X)}{q(Z)})\rangle_{q(Z)}$
++ $\mathcal{KL}(q||p) = - \langle \log(\frac{p(Z|X)}{q(Z)})\rangle_{q(Z)}$
 
 Maximizing the lower bound $\mathcal L(q)$ w.r.t. $q$ is equivalent to minimizing the gap, i.e. the Kullback-Leibler divergence. This is achieved by setting the prior $p(Z)$ equal to the posterior $p(Z|X)$.
 
@@ -30,26 +32,28 @@ Before we present examples, we derive variational inference from a physical pers
 
 #### Variational Free Energy
 
-In isolated many particle systems the energy E(**x**, **J**) of the system is determined by the state **x** the interaction **J** between the degrees of freedom. Given an inverse temperature, the probability of finding the system in state **x** is described by
+In isolated many particle systems the energy E(**x**, **J**) of the system is determined by the state **x** and the interaction **J** between the degrees of freedom. Given an inverse temperature $\beta$, the probability of finding the system in state **x** is described by
 
-$p(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_p(\beta, J)}$
+$$p(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_p(\beta, J)}$$
 
-The normalization constant, also called the partition function is given by
+The normalization constant, also called the partition function, is given by
 
-$Z_p(\beta, J) = Tr \exp(- \beta E(x,J))$.
+$$Z_p(\beta, J) = Tr \exp(- \beta E(x,J))$$.
 
 Further, the free energy $F$ of the system is defined as
 
-$F = \beta^{-1} \log Z_p(\beta, J) = \langle E(x, J) \rangle_p - \beta^{-1} H_p$,
+$$F = \beta^{-1} \log Z_p(\beta, J) = \langle E(x, J) \rangle_p - \beta^{-1} H_p$$,
 
 where $H_p = \langle -\log p \rangle_p$ ist the entropy.
 
 Approximating the true distribution $p$ by a wrong distribution $q$, we can define the *variational free energy* $F_q$
 
-$F_q = \langle E(x, J) \rangle_q - \beta^{-1} H_q = - \beta^{-1} \langle \log p(X| \beta, J) \rangle_q - \beta^{-1} \log Z_p  - \beta^{-1} \langle -\log q \rangle_q$
+$$
+F_q = \langle E(x, J) \rangle_q - \beta^{-1} H_q \\ F_q = - \beta^{-1} \langle \log p(X| \beta, J) \rangle_q - \beta^{-1} \log Z_p  - \beta^{-1} \langle -\log q \rangle_q
+$$
 
 which reduces to
 
-$\beta F_q - \beta F = \mathcal {KL} (q || p) > 0$.
+$$\beta F_q - \beta F = \mathcal {KL} (q || p) \ge 0$$.
 
 Since we made no assumptions about $q$ so far, the true free energy $F$ is always a lower bound for the variational free energy $F_q$.
