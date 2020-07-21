@@ -2,7 +2,7 @@
 
 ## Exact Inference by Complete Enumeration
 
-We start our discussion of inference with an example given in Mackay (2003) - the burglar alarm. The problem serves very well as a first contact to inference, since we are dealing with binary random variables in a simple probabilistic network. It is possible to solve the problem exactly and therefore applying the most immportant rules with simple expressions.
+We start our discussion on inference with an example given in Mackay (2003) - the burglar alarm. The problem serves very well as a first contact to inference, since we are dealing with binary random variables in a simple probabilistic network. It is possible to solve the problem exactly and therefore applying the most important rules to simple expressions.
 
 #### The Burglar Alarm
 *Fred lives in Los Angeles and commutes 60 miles to work. Whilst at work, he receives a phone-call from his neighbour saying that Fred’s burglar alarm is ringing. What is the probability that there was a burglar in his house today? While driving home to investigate, Fred hears on the radio that there was a small earthquake that day near his home. ‘Oh’, he says, feeling relieved, ‘it was probably the earthquake that set off the alarm’. What is the probability that there was a burglar in his house? (After Pearl, 1988).*
@@ -11,9 +11,9 @@ Intuitively we assume that our example is described by the following Belief Netw
 
 | ![Belief Network](images/1_1_belief_network.png "Belief Network")|
 |:--:| 
-| Belief network for the burglar alarm problem. (Mackay (2003)) |
+| Belief network for the burglar alarm problem. (Mackay (2003) |
 
-Under this assumption, the joint probability factorizes under multiple application of the chain rule as follows
+Given the belief network, the joint probability factorizes by multiple application of the chain rule
 
 $$
 P(b, e, r, a, p) = P(b)P(e)P(a|b,e)P(p|a)P(r |e)
@@ -48,9 +48,9 @@ $$
 
 seems to be plausible. In particular this means, that we have certainty for a=1, e=1, if we observe p=1, r=1 respectively.
 
-Now we can formulate the core idea of thr inference task: 
+Now we can formulate the core idea of the inference task: 
 
-*Receiving a phone call ($p=1$), what can we infer about the probability of a burglar and an earthquake, i.e. $P(b,e|p=1)$*
+*Receiving a phone call ($p=1$), what can we say about the probability of a burglar and an earthquake, i.e. $P(b,e|p=1)$*
 
 For $p=1$ we have certainty for $a=1$, with *Bayes' Theorem* we arrive at
 
@@ -66,16 +66,16 @@ $$
 P(b|a=1) = \sum_{e={0,1}} P(b,e|a=1)
 $$
 
-The probability of an earthquake, when $p=1$, before he hears the radio report is given by setting $e=1$ and marginalization over *b*
+The probability of an earthquake on the other hand, is given by marginalization over the burglar *b* variable
 
 $$
 P(e=1|p=1) =  \sum_{b={0,1}}\frac{P(a=1|b, e=1)P(b)P(e=1)}{P(a=1)}
 $$
 
 #### Conclusion
-The only accessible variables to Fred at work were the phonecall *p* and the radio *r*. But knowing circumstances summarized in the **belief network** and probabilities we were able to infer the probability of a burglar or an earthquake.
+The only accessible variables to Fred at work were the phonecall *p* and the radio *r*. But knowing the circumstances summarized in the **belief network** and probabilities we were able to infer the probability of a burglar or an earthquake.
 
-While in the case of few and discrete variables, we ware able to completely enumerate all the hypothesis and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible. 
+In case of few and discrete variables, we are able to completely enumerate all hypotheses and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible. 
 
 E.g. for a two component Gaussian mixture model
 
@@ -85,9 +85,7 @@ $$
 
 we have 5 independent continuous parameters. As before we could by discretize the space as is needed for working with a computer and again completely enumerate and evaluate.
 
-If we are aiming to reduce the uncertainty by, say, a factore of 10, the costs for a grid method increases **exponentially** by a factor of $10^K$.
-
-For this reason a different approach is necessary, which we will discuss below.
+To reduce the uncertainty by say, a factor of 10, the costs for a grid method increases **exponentially** by a factor of $10^K$. Consequently we need a different approach, which we will discuss below.
 
 ## Maximum Likelihood Estimation
 
@@ -97,7 +95,7 @@ $$
 \underset{\theta}\text{argmax} \log P(X | \theta, \mathcal H )
 $$.
 
-The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm, but the frequentists assumes a single fixed $\theta$ determined by the real data distribution. In contrast from the Bayesian point of view, there is only a single dataset $\mathcal D$ observed in an experiment and instead the parameter has an uncertainty.
+The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $\theta$ fixed by the real data distribution, the bayesians observe a single fixed dataset $\mathcal D$ an infer an uncertainty for the parameter $\theta$.
 
 ## Maximum A-Posteriori
 
@@ -117,12 +115,12 @@ The first expression is called **Bayes estimate** and the second one is called *
 
 ## Regularization
 
-The prior distribution introduces regularization in a natural way. Adding regularization to the cost function restricts constrains the magnitude of the parameters. The same is done by a prior for the parameters in a Bayesian model. Samples will be drawn more often in regions with high probability.
+The prior distribution introduces regularization in a natural way. Adding regularization to the cost function constrains the magnitude of the parameters. The same can be achieved by a the prior $p(\theta)$ in a bayesian model, forcing smaller magnitudes by a higher probability around the origin.
 
-As an example, we consider a prior distribution $p(\theta) = \mathcal N(\theta; 0, I/\lambda)$. The posterior then is given by
+As an example, we consider a prior distribution $p(\theta) = \mathcal N(\theta; 0, I/\lambda)$, leading to the followingt logposterior
 
 $$
 \log p(\theta|X) = \log \frac{p(X|\theta)p(\theta)}{p(X)} = \log p(X|\theta) - \frac{\lambda}{2} \sum_i \theta_i^2 + const.
 $$
 
-where the regularizing effect of the prior is visible.
+Thus, this particular choice of the prior leads to a $L^2$ regularization.

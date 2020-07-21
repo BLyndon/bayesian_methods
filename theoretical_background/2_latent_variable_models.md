@@ -17,7 +17,7 @@ The complex distribution over the observables $p(x)$ then can be constructed by 
 The first two examples are discrete latent variable models. The remaining examples are continuous latent variable models.
 
 ### Interpretation
-In many cases, the latent variables can be interpreted. In case of clustering, the value of the latent variable corresponds to the cluster component. In case of blind source separation, each latent variable corresponds to a source.
+In many cases, the latent variables can be interpreted. In case of clustering, the value of the latent variable corresponds to the cluster component. In case of blind source separation, where mixed signals from several sources are measured, each latent variable corresponds to a single source.
 
 ### Training
 The latent variables are completely unobservable and must be inferred from the observed data. An important training method for latent variable models is the expectation maximation.

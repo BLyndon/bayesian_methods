@@ -1,22 +1,24 @@
 # Variational Inference
 
-For many practical models evaluating P(Z|X) is infeasible and approximation schemes are required. There are mainly two types of approximation schemes. On the one hand there are stochastic approximation schemes such as Markov Chain Monte Carlo, but here we introduce a deterministic approximation scheme called *variational inference*. 
+For many practical models evaluating P(Z|X) is infeasible and approximation schemes are required. There are mainly two types of approximation schemes. The first major group consists of stochastic approximation schemes such as Markov Chain Monte Carlo, and the second major group is formed by deterministic approximation schemes. 
 
-In variational inference, the probability distribution $p(X)$ is modeled by another distribution $q(X)$ in two steps. First, the functional class of $q(X)$ is reduced to simple functional forms and afterwards we want to find the best model function $q^*(X)$ within this class.
+In this section we will introduce a determinisitic method called *variational inference*. 
 
-Before we turn to a specific restriction of the family of distributions, we derive a composition of the log marginal probability.
+In variational inference, the probability distribution $p(X)$ is approximated by a simpler distribution $q(X)$ in two steps. First, the functional class of $q(X)$ is reduced and afterwards we want to find the best model function $q^*(X)$ within this class.
 
-Assuming a fully Bayesian model, where all parameters are stochastic with given priors. Since they can be absorbed into $Z$ they no longer appear explicitly.
+We start from a fully Bayesian model, where all parameters are stochastic with given priors. We absorbe the stochastic parameters into the latent variables $Z$, the no longer appear explicitly in the notation.
 
-The log marginal probability is given by
+The full probability can be rewritten as the expectation value of the conditional probability $p(X|Z)$
 
 $$
 \log p(X) = \log \left( \langle p(X|Z) \rangle_{q(Z)}\right) \ge \langle \log p(X|Z) \rangle_{q(Z)}
 $$,
 
-where we used Jensen's inequality. By subtraction, the gap of the inequality turns out to be the Kullback-Leibler divergence and we end up with the following decomposition 
+where we used Jensen's inequality. By subtraction, the inequality gap turns out to be the Kullback-Leibler divergence, so we end up with the following decomposition 
 
-$$\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)$$,
+$$
+\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)
+$$,
 
 where
 
@@ -24,19 +26,19 @@ where
 
 + $\mathcal{KL}(q||p) = - \langle \log(\frac{p(Z|X)}{q(Z)})\rangle_{q(Z)}$
 
-Maximizing the lower bound $\mathcal L(q)$ w.r.t. $q$ is equivalent to minimizing the gap, i.e. the Kullback-Leibler divergence. This is achieved by setting the prior $p(Z)$ equal to the posterior $p(Z|X)$.
+Maximizing the lower bound $\mathcal L(q)$ w.r.t. $q$ is equivalent to minimizing the gap, i.e. the Kullback-Leibler divergence. This is achieved by setting the prior $q(Z)$ equal to the posterior $p(Z|X)$.
 
-Since $p(Z|X)$ is expected to be intractable now, at this point the approximation starts. As mentioned above, we restrict the family of distributions $q(Z)$. The goal will be a restriction leading to tractable distributions.
+The posterior $p(Z|X)$ is expected to be intractable now, so we need to start the approximation here. As mentioned above, we restrict the family of distributions $q(Z)$. The goal will be a restriction to a class of tractable distributions.
 
-Before we present examples, we derive variational inference from a physical perspective in the next section.
+But before we present possible restrictons, we derive variational inference from a physical perspective in the next section.
 
 #### Variational Free Energy
 
-In isolated many particle systems the energy E(**x**, **J**) of the system is determined by the state **x** and the interaction **J** between the degrees of freedom. Given an inverse temperature $\beta$, the probability of finding the system in state **x** is described by
+In isolated many particle systems the energy E(**x**, **J**) of the system is determined by the state **x** and the interactions **J** between the degrees of freedom. Given an inverse temperature $\beta$, the probability finding the system in state **x** is described by
 
 $$p(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_p(\beta, J)}$$
 
-The normalization constant, also called the partition function, is given by
+The normalization constant, called the partition function, is given by
 
 $$Z_p(\beta, J) = Tr \exp(- \beta E(x,J))$$.
 
@@ -46,14 +48,19 @@ $$F = \beta^{-1} \log Z_p(\beta, J) = \langle E(x, J) \rangle_p - \beta^{-1} H_p
 
 where $H_p = \langle -\log p \rangle_p$ ist the entropy.
 
-Approximating the true distribution $p$ by a wrong distribution $q$, we can define the *variational free energy* $F_q$
+Approximating the true distribution $p$ by any other distribution $q$, we can define the *variational free energy* $F_q$
 
 $$
-F_q = \langle E(x, J) \rangle_q - \beta^{-1} H_q \\ F_q = - \beta^{-1} \langle \log p(X| \beta, J) \rangle_q - \beta^{-1} \log Z_p  - \beta^{-1} \langle -\log q \rangle_q
+F_q = \langle E(x, J) \rangle_q - \beta^{-1} H_q
+$$
+$$
+F_q = - \beta^{-1} \langle \log p(X| \beta, J) \rangle_q - \beta^{-1} \log Z_p  - \beta^{-1} \langle -\log q \rangle_q
 $$
 
-which reduces to
+which reduces to the more expressive form
 
 $$\beta F_q - \beta F = \mathcal {KL} (q || p) \ge 0$$.
 
-Since we made no assumptions about $q$ so far, the true free energy $F$ is always a lower bound for the variational free energy $F_q$.
+As we made no assumptions about $q$ so far, the true free energy $F$ is always a lower bound for the variational free energy $F_q$.
+
+With help of the prior knowledge from physics we circumvented the less obvious transformation of $p(x)$ to an expecation value followed by the application of Jenson's inequality. In addition we scipt the tedious calculation of the gap that we skipped above.
