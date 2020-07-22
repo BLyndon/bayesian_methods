@@ -2,14 +2,14 @@
 title: Inference
 tagline: "Machine Learning"
 description: "Bayesian Methods for Machine Learning"
-url: "https://BLyndon.github.io/bayesian_methods/"
+url: "https://BLyndon.github.io/bayesian_methods"
 baseurl: "/bayesian_methods"
 permalink: pretty
 
 # About/contact
 author:
   name: Benjamin Heil
-  url: https://github.com/BLyndon/
+  url: https://github.com/BLyndon
   email: Benjamin.Heil@mail.de
 
 # Custom vars
