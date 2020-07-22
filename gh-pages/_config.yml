@@ -1,0 +1,48 @@
+# Setup
+title: Inference
+tagline: "Machine Learning"
+description: "Bayesian Methods for Machine Learning"
+url: https://github.com/BLyndon/bayesian_methods
+baseurl: ""
+permalink: pretty
+
+# About/contact
+author:
+  name: Benjamin Heil
+  url: https://github.com/BLyndon/
+  email: Benjamin.Heil@mail.de
+
+github:
+  url: https://github.com/BLyndon/bayesian_methods
+
+# Custom vars
+version: 1.1.0
+google_analytics_id: #UA-XXXX-Y
+
+gems: ["jekyll/scholar"]
+
+scholar:
+  style: modern-language-association
+  locale: en
+
+  sort_by: none
+  order: ascending
+
+  group_by: none
+  group_order: ascending
+
+  source: ./_bibliography
+  bibliography: references.bib
+  bibliography_template: "{{reference}}"
+  relative: "/ed/bibliography.html"
+
+  replace_strings: true
+  join_strings: true
+
+  use_raw_bibtex_entry: false
+
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+
+  query: "@*"
