@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Inference</title>
+ <link href="https://github.com/BLyndon/bayesian_methods/atom.xml" rel="self"/>
+ <link href="https://github.com/BLyndon/bayesian_methods/"/>
+ <updated>2020-07-22T22:56:29+02:00</updated>
+ <id>https://github.com/BLyndon/bayesian_methods</id>
+ <author>
+   <name>Benjamin Heil</name>
+   <email>Benjamin.Heil@mail.de</email>
+ </author>
+
+ 
+ <entry>
+   <title>4. Gaussian Processes</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/gp/"/>
+   <updated>2020-07-22T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/gaussian-process</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#gaussian-processes&quot; id=&quot;markdown-toc-gaussian-processes&quot;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When hiking in the mountains not only the distance covered is interesting but also the altitude. The altitude along the track then is a 1-dimensional continuous function of the distance.&lt;/p&gt;
+
+&lt;p&gt;To create a height profile of the track the altitude is measured at certain points along the path. The amount of data points of course is restricted to a finite number, although the altitude function is defined everywhere.&lt;/p&gt;
+
+&lt;p&gt;After collecting the data, we want to construct the true function from the finite set of data points. Instead of fixing a parametric model function, we want to follow a different approach: To construct the function we want to derive a probability distribution over functions.&lt;/p&gt;
+
+&lt;h2 id=&quot;gaussian-processes&quot;&gt;Gaussian Processes&lt;/h2&gt;
+
+&lt;p&gt;To derive a probability distribution over functions, we need to introduce a probability distribution for each outcome along the path. The finite set of measurements &lt;script type=&quot;math/tex&quot;&gt;A(x_i)&lt;/script&gt; can be used to infer the probability of the functional outcome for every possible value &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in continuous set of positions along the countinuous path.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(A(x)|A(x_1), \dots, A(x_k))&lt;/script&gt;
+
+&lt;p&gt;But first, let’s think about the joint probability for the measurements. The values &lt;script type=&quot;math/tex&quot;&gt;A(x_i)&lt;/script&gt; for each &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; are a scalars, so we could try to model each these values by a one dimensional gaussian random variable resulting in a fully factorized joint distribution.&lt;/p&gt;
+
+&lt;p&gt;Compared to climbing, hiking trails vary smoothly with the position, so the values of the random variables will depend on each other. This imposes a correlation between the points at different positions. While close points are strongly correlated, points far from each other are almost uncorrelated.&lt;/p&gt;
+
+&lt;p&gt;The factorized joint distribution, which is essentially a diagonal multivariate gaussian, is not able to model these correlations. Correlations between different measured values &lt;script type=&quot;math/tex&quot;&gt;A(x_i)&lt;/script&gt; are given by finite off-diagonal entries in the covariance.&lt;/p&gt;
+
+&lt;p&gt;By replacing the diagonal by a non-diagonal covariance matrix, the multivariate gaussian distribution captures both observed qualitative features of our system.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gaussian Process&lt;/strong&gt; The probability distribution of a function &lt;script type=&quot;math/tex&quot;&gt;y(x)&lt;/script&gt; is a Gaussian process if for any finite selection of points &lt;script type=&quot;math/tex&quot;&gt;x_1,\dots,x_k&lt;/script&gt;, the density &lt;script type=&quot;math/tex&quot;&gt;p(y(x_1),\dots,y(x_k))&lt;/script&gt; is Gaussian.&lt;/p&gt;
+
+&lt;p&gt;Being a multivariate gaussian, the joint distribution over the k variables &lt;script type=&quot;math/tex&quot;&gt;A(x_1), \dots, A(x_k)&lt;/script&gt; is fully specified by the mean and the covariance. The mean and the covariance depend neccesarily on the finite selection of points &lt;script type=&quot;math/tex&quot;&gt;x_1,\dots,x_k&lt;/script&gt;. Otherwise the outcome would be sampled from the same distribution for all positions and the model wouldn’t be able to sample non-constant functions.&lt;/p&gt;
+
+&lt;p&gt;The mean is set to be zero for symmetry reasons, since we lack prior knowledge. Additionally, the correlations given by real numbers are symmetric. The elements of the covariance matrix for all possible positional pairings will be modeled by a suitable kernel function &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; decaying with the distance between two points&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;cov(A_i, A_j) = k(x_i, x_j) = k(||x_i - x_j||) = \Sigma_{ij}&lt;/script&gt;
+
+&lt;p&gt;A sample drawn from this Gaussian is a vector of &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; elements corresponding to the vector of &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; positions &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;. The ordering of these elements are fixed by the ordering of the covariance matrix elements, which in turn are determined by the ordering of the positional measurements. While the positional values follow no specific ordering, the ith element of the sample is paired with the ith element of the positional vector.&lt;/p&gt;
+
+&lt;p&gt;Remember, we aimed for a probability distribution over functions in the first place. Lets check with few lines of code wether the sample resembles a function already.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>3. Variational Inference</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/vi/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/variational_inference</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#variational-lower-bound-decomposition&quot; id=&quot;markdown-toc-variational-lower-bound-decomposition&quot;&gt;Variational Lower Bound Decomposition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For many practical models evaluating &lt;script type=&quot;math/tex&quot;&gt;p(Z\|X)&lt;/script&gt; is infeasible and approximation schemes are required. There are mainly two types of approximation schemes. The first major group consists of &lt;strong&gt;stochastic approximation schemes&lt;/strong&gt; such as Markov Chain Monte Carlo, and the second major group is formed by &lt;strong&gt;deterministic approximation schemes&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this section we will introduce a determinisitic method called &lt;strong&gt;variational inference&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;variational-lower-bound-decomposition&quot;&gt;Variational Lower Bound Decomposition&lt;/h2&gt;
+
+&lt;p&gt;In variational inference, the probability distribution &lt;script type=&quot;math/tex&quot;&gt;p(X)&lt;/script&gt; is approximated by a simpler distribution &lt;script type=&quot;math/tex&quot;&gt;q(X)&lt;/script&gt; in two steps. First, the functional class of &lt;script type=&quot;math/tex&quot;&gt;q(X)&lt;/script&gt; is reduced and afterwards we want to find the best model function &lt;script type=&quot;math/tex&quot;&gt;q^*(X)&lt;/script&gt; within this class.&lt;/p&gt;
+
+&lt;p&gt;We start from a fully Bayesian model, where all parameters are stochastic with given priors. We absorbe the stochastic parameters into the latent variables &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt;, the no longer appear explicitly in the notation.&lt;/p&gt;
+
+&lt;p&gt;The full probability can be rewritten as the expectation value of the conditional probability &lt;script type=&quot;math/tex&quot;&gt;p(X\|Z)&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(X) = \log \left( \langle p(X|Z) \rangle_{q(Z)}\right) \ge \langle \log p(X|Z) \rangle_{q(Z)}&lt;/script&gt;
+
+&lt;p&gt;where we used Jensen’s inequality. By subtraction, the inequality gap turns out to be the Kullback-Leibler divergence, so we end up with the following decomposition&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(X) = \mathcal L (q) + \mathcal{KL}(q||p)&lt;/script&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    \mathcal L (q) = \langle \log p(X|Z) \rangle_{q(Z)}\\
+    \mathcal{KL}(q||p) = - \langle \log(\frac{p(Z|X)}{q(Z)})\rangle_{q(Z)}
+\end{aligned}&lt;/script&gt;
+
+&lt;p&gt;Maximizing the lower bound &lt;script type=&quot;math/tex&quot;&gt;\mathcal L(q)&lt;/script&gt; w.r.t. &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; is equivalent to minimizing the gap, i.e. the Kullback-Leibler divergence. This is achieved by setting the prior &lt;script type=&quot;math/tex&quot;&gt;q(Z)&lt;/script&gt; equal to the posterior &lt;script type=&quot;math/tex&quot;&gt;p(Z\|X)&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;The posterior &lt;script type=&quot;math/tex&quot;&gt;p(Z\| X)&lt;/script&gt; is expected to be intractable now, so we need to start the approximation here. As mentioned above, we restrict the family of distributions &lt;script type=&quot;math/tex&quot;&gt;q(Z)&lt;/script&gt;. The goal will be a restriction to a class of tractable distributions.&lt;/p&gt;
+
+&lt;p&gt;But before we present possible restrictons, we derive the variational inference from a physical perspective in the next section.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>3.1 Variational Free Energy</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/vfe/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/variational_free_energy</id>
+   <content type="html">&lt;p&gt;In isolated many particle systems the energy &lt;script type=&quot;math/tex&quot;&gt;E(x, J)&lt;/script&gt; of the system is determined by the state &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and the interactions &lt;script type=&quot;math/tex&quot;&gt;J&lt;/script&gt; between the degrees of freedom. Given an inverse temperature &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, the probability finding the system in state $x$ is described by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_p(\beta, J)}&lt;/script&gt;
+
+&lt;p&gt;The normalization constant, called the partition function, is given by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Z_p(\beta, J) = Tr \exp(- \beta E(x,J))&lt;/script&gt;
+
+&lt;p&gt;Further, the free energy &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; of the system is defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;F = \beta^{-1} \log Z_p(\beta, J) = \langle E(x, J) \rangle_p - \beta^{-1} H_p&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;H_p = \langle -\log p \rangle_p&lt;/script&gt; ist the entropy.&lt;/p&gt;
+
+&lt;p&gt;Approximating the true distribution &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; by any other distribution $q$, we can define the &lt;em&gt;variational free energy&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;F_q&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    F_q = \langle E(x, J) \rangle_q - \beta^{-1} H_q \\
+    F_q = - \beta^{-1} \langle \log p(X| \beta, J) \rangle_q - \beta^{-1} \log \\ 
+    Z_p  - \beta^{-1} \langle -\log q \rangle_q
+\begin{aligned}&lt;/script&gt;
+
+&lt;p&gt;which reduces to the more expressive form&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\beta F_q - \beta F = \mathcal {KL} (q || p) \ge 0&lt;/script&gt;
+
+&lt;p&gt;As we made no assumptions about &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; so far, the true free energy &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; is always a lower bound for the variational free energy &lt;script type=&quot;math/tex&quot;&gt;F_q&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;With help of the prior knowledge from physics we circumvented the less obvious transformation of &lt;script type=&quot;math/tex&quot;&gt;p(x)&lt;/script&gt; to an expecation value followed by the application of Jenson’s inequality. In addition the tedious calculation for the gap was also skipped above.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>1.2 Bayesian Regularization</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/reg/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/regularization</id>
+   <content type="html">&lt;p&gt;The prior distribution introduces regularization in a natural way. Adding regularization to the cost function constrains the magnitude of the parameters. The same can be achieved by a the prior &lt;script type=&quot;math/tex&quot;&gt;p(\theta)&lt;/script&gt; in a bayesian model, forcing smaller magnitudes by a higher probability around the origin.&lt;/p&gt;
+
+&lt;p&gt;As an example, we consider a prior distribution &lt;script type=&quot;math/tex&quot;&gt;p(\theta) = \mathcal N(\theta; 0, I/\lambda)&lt;/script&gt;, leading to the following logposterior&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(\theta|X) = \log \frac{p(X|\theta)p(\theta)}{p(X)} = \log p(X|\theta) - \frac{\lambda}{2} \sum_i \theta_i^2 + const.&lt;/script&gt;
+
+&lt;p&gt;Thus, this particular choice of the prior leads to a &lt;script type=&quot;math/tex&quot;&gt;L^2&lt;/script&gt; regularization.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Overview</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/2020/07/21/overview/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/2020/07/21/overview</id>
+   <content type="html">&lt;p&gt;Some comprehensive notes on the concepts of Bayesian inference in machine learning. They lay the foundation for the methods I use in the Notebooks found in the &lt;a href=&quot;https://github.com/BLyndon/bayesian_methods&quot;&gt;repository&lt;/a&gt;. The following great books I found very helpful&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3&gt;Bayesian Inference&lt;/h3&gt;
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&quot;/ei/&quot;&gt;Exact Inference&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;/mle/&quot;&gt;Maximum Likelihood Estimation&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;/reg/&quot;&gt;Bayesian Regularization&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;h3&gt;Latent Variable Models&lt;/h3&gt;
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&quot;/lvmod/&quot;&gt;Motivatation&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;/em/&quot;&gt;EM-Algorithm&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;/gmm/&quot;&gt;Application - Gaussian Mixture Model&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;h3&gt;Variational Inference&lt;/h3&gt;
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&quot;/vi/&quot;&gt;Variational Lower Bound&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;/vfe/&quot;&gt;Variational Free Energy&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;h3&gt;Gaussian Processes&lt;/h3&gt;
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&quot;/gpmot/&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>1.1 Maximum Likelihood Estimation</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/mle/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/mle</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#maximum-likelihood-estimation&quot; id=&quot;markdown-toc-maximum-likelihood-estimation&quot;&gt;Maximum Likelihood Estimation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#maximum-a-posteriori&quot; id=&quot;markdown-toc-maximum-a-posteriori&quot;&gt;Maximum A-Posteriori&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;maximum-likelihood-estimation&quot;&gt;Maximum Likelihood Estimation&lt;/h2&gt;
+&lt;p&gt;Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space &lt;script type=&quot;math/tex&quot;&gt;\mathcal H&lt;/script&gt; that fits the data well. The hypotheses in &lt;script type=&quot;math/tex&quot;&gt;\mathcal H&lt;/script&gt; are parametrized by &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Now, to fit the data well, we need to learn the value of &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, such that the probability observing the data &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; from the hypothesis distribution is maximized. This is summarized under the term &lt;strong&gt;maximum likelihood estimation&lt;/strong&gt; (MLE), as we are maximizing the &lt;strong&gt;likelihood&lt;/strong&gt; function. For convenience we will maximize the &lt;strong&gt;loglikelihood&lt;/strong&gt; instead&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{\theta}{\text{argmax}} \log P(X | \theta, \mathcal H )&lt;/script&gt;
+
+&lt;p&gt;The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; fixed by the real data distribution, the bayesians observe a single fixed dataset &lt;script type=&quot;math/tex&quot;&gt;\mathcal D&lt;/script&gt; an infer an uncertainty for the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;maximum-a-posteriori&quot;&gt;Maximum A-Posteriori&lt;/h2&gt;
+
+&lt;p&gt;Using Bayes rule we can calculate the uncertainty of the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; given the observed data &lt;script type=&quot;math/tex&quot;&gt;\mathcal D&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(\theta | X) = \frac{P(X | \theta) P(\theta)}{P(X)}&lt;/script&gt;
+
+&lt;p&gt;However, in practice we are often interested in a single value for &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;. Two popular choices are&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\langle \theta \rangle = \int \theta P(\theta|X) d \theta&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta_{MAP} = \underset{\theta}{\text{argmax}} P(\theta | X)&lt;/script&gt;
+
+&lt;p&gt;The first expression is called &lt;strong&gt;Bayes estimate&lt;/strong&gt; and the second one is called &lt;strong&gt;Maximum A Postiori&lt;/strong&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2. Latent Variable Models</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/lvmod/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/latent_variable</id>
+   <content type="html">&lt;p&gt;The concept of latent or hidden variables plays a central role in generative models, i.e. models based on a full probability distribution over all variables. The observable features in these models may have sophisticated correlations between each other resulting in complex probability distributions. By introducing latent variables to the model, the complexity can be mapped to simpler and more tractable joint distributions of the expanded space. The latent variables can be introduced by marginalisation&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x) = \sum_z p(x, z)&lt;/script&gt;
+
+&lt;p&gt;The complex distribution over the observables &lt;script type=&quot;math/tex&quot;&gt;p(x)&lt;/script&gt; then is constructed by simpler additive components &lt;script type=&quot;math/tex&quot;&gt;p(x, z)&lt;/script&gt;. In case of continuous latent variables, the sum is replaced by an integral. Continous latent variables are closely related to manifold lerning, where the all lie close to a manifold of much lower dimensionality. For example a translation of pixels of an image can be described by a latent variable.&lt;/p&gt;
+
+&lt;h3 id=&quot;examples&quot;&gt;Examples&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;clustering&lt;/li&gt;
+  &lt;li&gt;topic modeling&lt;/li&gt;
+  &lt;li&gt;blind source separation&lt;/li&gt;
+  &lt;li&gt;dimensional reduction&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The first two examples are discrete latent variable models. The remaining examples are continuous latent variable models.&lt;/p&gt;
+
+&lt;h3 id=&quot;interpretation&quot;&gt;Interpretation&lt;/h3&gt;
+&lt;p&gt;In many cases, the latent variables can be interpreted. In case of clustering, the value of the latent variable corresponds to the cluster component. In case of blind source separation, where mixed signals from several sources are measured, each latent variable corresponds to a single source.&lt;/p&gt;
+
+&lt;h3 id=&quot;training&quot;&gt;Training&lt;/h3&gt;
+&lt;p&gt;The latent variables are completely unobservable and must be inferred from the observed data. An important training method for latent variable models is the expectation maximation.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2.2 Gaussian Mixture Models</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/gmm/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/gmm</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#expectation-step&quot; id=&quot;markdown-toc-expectation-step&quot;&gt;Expectation Step&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#maximation-step&quot; id=&quot;markdown-toc-maximation-step&quot;&gt;Maximation Step&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#multivariate-gaussian-pdf&quot; id=&quot;markdown-toc-multivariate-gaussian-pdf&quot;&gt;Multivariate Gaussian PDF&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As a special case, a known training method for GMM is derived from the general EM principle. For GMM the likelihood is given by a weighted sum of Gaussians&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(X|\theta) = \sum_c \pi_c \mathcal N (X; \mu_c, \sigma_c)&lt;/script&gt;
+
+&lt;p&gt;with normalized weight parameters &lt;script type=&quot;math/tex&quot;&gt;\sum_c \pi_c = 1&lt;/script&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;expectation-step&quot;&gt;Expectation Step&lt;/h2&gt;
+
+&lt;p&gt;By comparison to the latent variable approach above, we establish a correspondence for each quantity from the latent variable model to the GMM. Interestingly, the latent variable &lt;script type=&quot;math/tex&quot;&gt;t_i&lt;/script&gt; has a natural interpretation as the cluster component.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    p(t_i = c) = \pi_c\\
+    p(x_i | t_i = c, \theta) = \mathcal N (x; \mu_c, \Sigma_c)\\
+    q^{k+1}(t_i = c) = \gamma_{ic}
+\end{aligned}&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;In the expectation step we want to minimize the Kullback-Leibler divergence by setting the prior &lt;script type=&quot;math/tex&quot;&gt;q^{k1}(t_i)&lt;/script&gt; to the posterior &lt;script type=&quot;math/tex&quot;&gt;p(t_i|x_i, \theta^k)&lt;/script&gt;. After applying the Bayes formular to the likelihood $$p(x_i&lt;/td&gt;
+      &lt;td&gt;t_i = c, \theta)$$ we have&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\gamma_{ic} = \frac{\pi_c \mathcal N (x_i; \mu_c, \Sigma_c)}{\sum_{c=1} \pi_c \mathcal N (x_i; \mu_c, \Sigma_c)}&lt;/script&gt;
+
+&lt;p&gt;For numerical reasons, we rewrite the expression in the following way&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\gamma_{ic} = \frac{\exp(y_{ic})}{\sum_{c=1} \exp(y_{ic})} = \frac{\exp(y_{ic} - \max(y))}{\sum_{c=1} \exp(y_{ic} - \max(y))}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;y_{ic}&lt;/script&gt; is given by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y_{ic} = \log \pi_c -\frac 1 2 \left(({x_i}-{\mu_c})^\mathrm{T}{\Sigma_c}^{-1}({x_i}-{\mu_c}) + d \log 2 \pi + \log \det \Sigma_c \right)&lt;/script&gt;
+
+&lt;h2 id=&quot;maximation-step&quot;&gt;Maximation Step&lt;/h2&gt;
+
+&lt;p&gt;In the maximization step the prior given by the expectation step is maximized w.r.t. &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    \theta^{k+1} = \text{argmax} \sum_{ic} q(t_i = c) \log \left(p(x_i,t_i=c|\theta^k)\right) \\= \text{argmax} \sum_{ic} \gamma_{ic}\left(\log \pi_{c} + \log \mathcal N (x_i; \mu_c, \Sigma_c)\right)
+\end{aligned}&lt;/script&gt;
+
+&lt;p&gt;In case of a  GMM, this can be done analytically by solving the following equations&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    \nabla_{\mu_{c}} \sum_{ik} \gamma_{ik} \log \left(\mathcal N (x; \mu_k, \Sigma_k)\right) = 0
+    \\ \nabla_{\Sigma_{c}} \sum_{ik} \gamma_{ik} \log \left(\mathcal N (x; \mu_k, \Sigma_k)\right) = 0
+\end{aligned}&lt;/script&gt;
+
+&lt;p&gt;Additionally the priors &lt;script type=&quot;math/tex&quot;&gt;p(t_i = c) = \pi_c&lt;/script&gt; need to be updated by solving&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla_{\nu} \left( \sum_{ic}  \gamma_{ic} \log \pi_c - \lambda \left(\sum_c \pi_c -1 \right)\right) = 0, \quad \nu = \pi_1, \pi_2, \pi_3, \lambda&lt;/script&gt;
+
+&lt;p&gt;where the Lagrange multiplier ensures normalization of the weights &lt;script type=&quot;math/tex&quot;&gt;\pi_c&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, this leads to the following update formulas&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    \pi_c = \frac{\sum_i \gamma_{ic}}{\sum_{ic} \gamma_{ic}} = \frac{1}{N}\sum_{i=1}^N \gamma_{ic} \\
+    \mathbf \mu_c = \frac{\sum_{i=1}^N \gamma_{c,i} \mathbf{x}_i}{\sum_{i=1}^N \gamma_{c,i}} \\
+    \Sigma_c = \frac{\sum_{i=1}^N \gamma_{c,i} (\mathbf{x}_i - \mathbf\mu_c) (\mathbf{x}_i - \mathbf{\mu}_1)^\top }{\sum_{i=1}^N \gamma_{c,i}}
+\end{aligned}&lt;/script&gt;
+
+&lt;h4 id=&quot;multivariate-gaussian-pdf&quot;&gt;Multivariate Gaussian PDF&lt;/h4&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+    \mathcal N (x; \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d \det(\Sigma)}} \exp\left(-\frac 1 2 ({x}-{\mu})^\mathrm{T}{\Sigma}^{-1}({x}-{\mu})\right),\\
+    x, \mu \in \mathbb R^d, \Sigma \in \mathbb R^{d\times d}
+\end{aligned}&lt;/script&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>1. Bayesian Inference</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/ei/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/exact_inference</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#exact-inference-the-burglar-alarm&quot; id=&quot;markdown-toc-exact-inference-the-burglar-alarm&quot;&gt;Exact Inference: The Burglar Alarm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conclusion&quot; id=&quot;markdown-toc-conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We start our discussion on inference with an example given in Mackay (2003) - the burglar alarm. The problem serves very well as a first contact to inference, since we are dealing with binary random variables in a simple probabilistic network. It is possible to solve the problem exactly and therefore applying the most important rules to simple expressions.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;exact-inference-the-burglar-alarm&quot;&gt;Exact Inference: The Burglar Alarm&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Fred lives in Los Angeles and commutes 60 miles to work. Whilst at work, he receives a phone-call from his neighbour saying that Fred’s burglar alarm is ringing. What is the probability that there was a burglar in his house today? While driving home to investigate, Fred hears on the radio that there was a small earthquake that day near his home. ‘Oh’, he says, feeling relieved, ‘it was probably the earthquake that set off the alarm’. What is the probability that there was a burglar in his house? (After Pearl, 1988).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Intuitively we assume that our example is described by the following Belief Network.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;../images/1_1_belief_network.png&quot; alt=&quot;Belief Network&quot; title=&quot;Belief Network&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Belief network for the burglar alarm problem. (Mackay (2003)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Given the belief network, the joint probability factorizes to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(b, e, r, a, p) = P(b)P(e)P(a|b,e)P(p|a)P(r |e)&lt;/script&gt;
+
+&lt;p&gt;where we have introduced the following variables
+- burglar &lt;em&gt;b&lt;/em&gt;
+- earthquake &lt;em&gt;e&lt;/em&gt;
+- radio &lt;em&gt;r&lt;/em&gt;
+- alarm &lt;em&gt;a&lt;/em&gt;
+- phonecall &lt;em&gt;p&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, with help of prior knowledge, we can estimate the probabilities and list them in the table below.&lt;/p&gt;
+
+&lt;center&gt; Prior distributions &lt;/center&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;script type=&quot;math/tex&quot;&gt;P(x)&lt;/script&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;x = b&lt;/script&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;x = e&lt;/script&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;x = 0&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;1 - \beta&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;1 - \epsilon&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;x = 1&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;\epsilon&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;center&gt; Likelihood function &lt;/center&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;script type=&quot;math/tex&quot;&gt;P(a=0; b, e)&lt;/script&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;b = 0&lt;/script&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;b = 1&lt;/script&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;e = 0&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;(1 − f)&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;(1−f)(1−α_b)&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;e = 1&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;(1−f)(1−α_e)&lt;/script&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;(1−f)(1−α_b)(1−α_e)&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We assume a small probability &lt;em&gt;f&lt;/em&gt; of a false alarm caused by some other event, the &lt;script type=&quot;math/tex&quot;&gt;\alpha_b&lt;/script&gt; denotes the reliability of the alarm and the earthquake triggers the alarm with a probability of &lt;script type=&quot;math/tex&quot;&gt;\alpha_e&lt;/script&gt;. Further, assuming&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(p=1|a=0)=0, \quad P(r=1|e=0)=0&lt;/script&gt;
+
+&lt;p&gt;seems to be plausible. In particular this means, that we have certainty for a=1, e=1, if we observe p=1, r=1 respectively.&lt;/p&gt;
+
+&lt;p&gt;Now we can formulate the core idea of the inference task:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Receiving a phone call (&lt;script type=&quot;math/tex&quot;&gt;p=1&lt;/script&gt;), what can we say about the probability of a burglar and an earthquake, i.e. &lt;script type=&quot;math/tex&quot;&gt;P(b,e\|p=1)&lt;/script&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For &lt;script type=&quot;math/tex&quot;&gt;p=1&lt;/script&gt; we have certainty for &lt;script type=&quot;math/tex&quot;&gt;a=1&lt;/script&gt;, with &lt;em&gt;Bayes’ Theorem&lt;/em&gt; we arrive at&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(b, e|a=1) = \frac{P(a=1|b, e)P(b)P(e)}{P(a=1)}&lt;/script&gt;
+
+&lt;p&gt;The expressions in the numerator, we can read off from the tables above. The unknown marginal probability &lt;script type=&quot;math/tex&quot;&gt;P(a=1)&lt;/script&gt; on the other hand is fixed by the normalization constraint.&lt;/p&gt;
+
+&lt;p&gt;The probability for a burglar after a phonecall is given by the marginalization over the earthquake variable &lt;em&gt;e&lt;/em&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(b|a=1) = \sum_{e={0,1}} P(b,e|a=1)&lt;/script&gt;
+
+&lt;p&gt;The probability of an earthquake on the other hand, is given by marginalization over the burglar &lt;em&gt;b&lt;/em&gt; variable&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(e=1|p=1) =  \sum_{b={0,1}}\frac{P(a=1|b, e=1)P(b)P(e=1)}{P(a=1)}&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The only accessible variables to Fred at work were the phonecall &lt;em&gt;p&lt;/em&gt; and the radio &lt;em&gt;r&lt;/em&gt;. But knowing the circumstances summarized in the &lt;strong&gt;belief network&lt;/strong&gt; and probabilities we were able to infer the probability of a burglar or an earthquake.&lt;/p&gt;
+
+&lt;p&gt;In case of few and discrete variables, we are able to completely enumerate all hypotheses and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible.&lt;/p&gt;
+
+&lt;p&gt;E.g. for a two component Gaussian mixture model&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(x| \mu_1, \sigma_1, \pi_1, \mu_2, \sigma_2, \pi_2) = \pi_1 \mathcal N (x| \mu_1, \sigma_1) + \pi_1 \mathcal N (x| \mu_2, \sigma_2)&lt;/script&gt;
+
+&lt;p&gt;we have 5 independent continuous parameters. As before we could by discretize the space as is needed for working with a computer and again completely enumerate and evaluate.&lt;/p&gt;
+
+&lt;p&gt;To reduce the uncertainty by say, a factor of 10, the costs for a grid method increases &lt;strong&gt;exponentially&lt;/strong&gt; by a factor of &lt;script type=&quot;math/tex&quot;&gt;10^K&lt;/script&gt;. Consequently we need a different approach, which we will discuss below.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2.1 General Expectation Maximation Algorithm</title>
+   <link href="https://github.com/BLyndon/bayesian_methods/em/"/>
+   <updated>2020-07-21T00:00:00+02:00</updated>
+   <id>https://github.com/BLyndon/bayesian_methods/em</id>
+   <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-em-algorithm&quot; id=&quot;markdown-toc-the-em-algorithm&quot;&gt;The EM-algorithm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#update-formulas&quot; id=&quot;markdown-toc-update-formulas&quot;&gt;Update Formulas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;During the training of a model, the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is tuned to maximize the likelihood &lt;script type=&quot;math/tex&quot;&gt;p(X\|\theta)&lt;/script&gt; of the observed dataset.&lt;/p&gt;
+
+&lt;p&gt;For i.i.d. data points the loglikelihood factorizes. Using the chain rule, we introduce a latent variables &lt;script type=&quot;math/tex&quot;&gt;t_i&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(X|\theta) = \sum_i log p(x_i|\theta) = \sum_{i} \log \sum_{c}p(x_i, t_i=c| \theta)&lt;/script&gt;
+
+&lt;p&gt;The advantage of the EM algorithm is to maximize a lower bound instead of the complicated loglikelihood &lt;script type=&quot;math/tex&quot;&gt;p(X\|\theta)&lt;/script&gt;. To find a lower bound we make use of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Jensen%27s_inequality&quot;&gt;Jenson inequality&lt;/a&gt;. But first, we need to transform the argument of the logarithm by inserting &lt;script type=&quot;math/tex&quot;&gt;1 = \frac{q(t_i=c)}{q(t_i=c)}&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(X|\theta) = \sum_{i} \log \sum_{c}q(t_i=c) \frac{p(x_i, t_i=c| \theta)}{q(t_i=c)} = \sum_i \log \left \langle \frac{p(X,t_i|\theta)}{q(t_i)} \right\rangle_{q(t)}&lt;/script&gt;
+
+&lt;p&gt;By this trick, Jenson inequality is applicable and we find a lower bound &lt;script type=&quot;math/tex&quot;&gt;\mathcal L(\theta, q)&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log p(X|\theta) = \sum_i \log \left \langle \frac{p(X,t_i|\theta)}{q(t_i)} \right\rangle_{q(t)} \geq \sum_i \left \langle \log \left( \frac{p(X,t_i|\theta)}{q(t_i)}\right) \right \rangle_{q(t)}&lt;/script&gt;
+
+&lt;h2 id=&quot;the-em-algorithm&quot;&gt;The EM-algorithm&lt;/h2&gt;
+
+&lt;p&gt;The lower bound &lt;script type=&quot;math/tex&quot;&gt;\mathcal L (\theta, q)&lt;/script&gt; now, is maximized in two steps. In the first step, called the &lt;strong&gt;expectation step&lt;/strong&gt;,  we vary &lt;script type=&quot;math/tex&quot;&gt;q(t_i)&lt;/script&gt; while &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is kept fix.&lt;/p&gt;
+
+&lt;p&gt;It can be shown, that the gap &lt;script type=&quot;math/tex&quot;&gt;\Delta&lt;/script&gt; between the loglikelihood &lt;script type=&quot;math/tex&quot;&gt;p(X\|\theta)&lt;/script&gt; and the lower bound &lt;script type=&quot;math/tex&quot;&gt;\mathcal L&lt;/script&gt; is given by the Kullback-Leibler divergence&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta = \log p(X|\theta) - \mathcal L(\theta, q) = \mathcal{KL}\left(q(t_i) || p(t_i| x_i, \theta)\right)&lt;/script&gt;
+
+&lt;p&gt;which is minimized by &lt;script type=&quot;math/tex&quot;&gt;q(t_i) = p(t_i\| x_i, \theta)&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the second step, called the &lt;strong&gt;maximization step&lt;/strong&gt;, the parameter &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; is tuned to maximize the lower bound for the particular choice of &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal L(\theta, q) = \sum_i \langle \log \left(p(X,t_i|\theta)\right)\rangle_{q(t_i)} + const.&lt;/script&gt;
+
+&lt;p&gt;The second term is constant w.r.t. &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;, the first term is usually concave and thus easily maximized by gradient ascent.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-formulas&quot;&gt;Update Formulas&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;E-step:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q^{k+1}(t_i) = p(t_i| x_i, \theta^k) = \frac{p(x_i|t_i, \theta^k) q^k(t_i)}{\sum_c p(x_i|t_i=c, \theta^k) q^k(t_i=c)}&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;M-step:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta^{k+1} = \text{argmax} \sum_i \mathbb E_{q^{k+1}(t_i)} \log \left(p(x_i,t_i|\theta^k)\right)&lt;/script&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>

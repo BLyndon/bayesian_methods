@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+    1. Bayesian Inference &middot; Inference
+    
+  </title>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll("script[type='math/tex']").forEach(function (el) {
+        el.outerHTML = "\\(" + el.textContent + "\\)";
+      });
+      document.querySelectorAll("script[type='math/tex; mode=display']").forEach(function (el) {
+        el.outerHTML = "\\[" + el.textContent + "\\]";
+      });
+      var script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js";
+      document.head.appendChild(script);
+    }, false);
+  </script>
+
+  
+  <link rel="canonical" href="/ei/">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+<body class="theme-base-0d">
+
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Bayesian Methods for Machine Learning</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item"
+      href="/">Overview</a>
+
+    
+
+    
+    
+    
+    
+    <a class="sidebar-nav-item active"
+      href="/ei/">1. Bayesian Inference</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/mle/">1.1 Maximum Likelihood Estimation</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/reg/">1.2 Bayesian Regularization</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/lvmod/">2. Latent Variable Models</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/em/">2.1 General Expectation Maximation Algorithm</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/gmm/">2.2 Gaussian Mixture Models</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/vi/">3. Variational Inference</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/vfe/">3.1 Variational Free Energy</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/gp/">4. Gaussian Processes</a>
+    
+    
+    
+    
+    
+
+    <!--
+    <a class="sidebar-nav-item" href="/archive/v1.1.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.1.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Inference</a>
+          <small>Machine Learning</small>
+        </h3>
+      </div>
+    </div>
+
+    <div class="container content">
+      <div class="page">
+  <h1 class="page-title">1. Bayesian Inference</h1>
+  <ul id="markdown-toc">
+  <li><a href="#exact-inference-the-burglar-alarm" id="markdown-toc-exact-inference-the-burglar-alarm">Exact Inference: The Burglar Alarm</a></li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+</ul>
+<p>We start our discussion on inference with an example given in Mackay (2003) - the burglar alarm. The problem serves very well as a first contact to inference, since we are dealing with binary random variables in a simple probabilistic network. It is possible to solve the problem exactly and therefore applying the most important rules to simple expressions.</p>
+
+<hr />
+
+<h2 id="exact-inference-the-burglar-alarm">Exact Inference: The Burglar Alarm</h2>
+<p><em>Fred lives in Los Angeles and commutes 60 miles to work. Whilst at work, he receives a phone-call from his neighbour saying that Fred’s burglar alarm is ringing. What is the probability that there was a burglar in his house today? While driving home to investigate, Fred hears on the radio that there was a small earthquake that day near his home. ‘Oh’, he says, feeling relieved, ‘it was probably the earthquake that set off the alarm’. What is the probability that there was a burglar in his house? (After Pearl, 1988).</em></p>
+
+<p>Intuitively we assume that our example is described by the following Belief Network.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="../images/1_1_belief_network.png" alt="Belief Network" title="Belief Network" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Belief network for the burglar alarm problem. (Mackay (2003)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Given the belief network, the joint probability factorizes to</p>
+
+<script type="math/tex; mode=display">P(b, e, r, a, p) = P(b)P(e)P(a|b,e)P(p|a)P(r |e)</script>
+
+<p>where we have introduced the following variables
+- burglar <em>b</em>
+- earthquake <em>e</em>
+- radio <em>r</em>
+- alarm <em>a</em>
+- phonecall <em>p</em></p>
+
+<p>Now, with help of prior knowledge, we can estimate the probabilities and list them in the table below.</p>
+
+<center> Prior distributions </center>
+
+<table>
+  <thead>
+    <tr>
+      <th><script type="math/tex">P(x)</script></th>
+      <th style="text-align: center"><script type="math/tex">x = b</script></th>
+      <th style="text-align: right"><script type="math/tex">x = e</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script type="math/tex">x = 0</script></td>
+      <td style="text-align: center"><script type="math/tex">1 - \beta</script></td>
+      <td style="text-align: right"><script type="math/tex">1 - \epsilon</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">x = 1</script></td>
+      <td style="text-align: center"><script type="math/tex">\beta</script></td>
+      <td style="text-align: right"><script type="math/tex">\epsilon</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<center> Likelihood function </center>
+
+<table>
+  <thead>
+    <tr>
+      <th><script type="math/tex">P(a=0; b, e)</script></th>
+      <th style="text-align: center"><script type="math/tex">b = 0</script></th>
+      <th style="text-align: right"><script type="math/tex">b = 1</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script type="math/tex">e = 0</script></td>
+      <td style="text-align: center"><script type="math/tex">(1 − f)</script></td>
+      <td style="text-align: right"><script type="math/tex">(1−f)(1−α_b)</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">e = 1</script></td>
+      <td style="text-align: center"><script type="math/tex">(1−f)(1−α_e)</script></td>
+      <td style="text-align: right"><script type="math/tex">(1−f)(1−α_b)(1−α_e)</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We assume a small probability <em>f</em> of a false alarm caused by some other event, the <script type="math/tex">\alpha_b</script> denotes the reliability of the alarm and the earthquake triggers the alarm with a probability of <script type="math/tex">\alpha_e</script>. Further, assuming</p>
+
+<script type="math/tex; mode=display">P(p=1|a=0)=0, \quad P(r=1|e=0)=0</script>
+
+<p>seems to be plausible. In particular this means, that we have certainty for a=1, e=1, if we observe p=1, r=1 respectively.</p>
+
+<p>Now we can formulate the core idea of the inference task:</p>
+
+<blockquote>
+  <p>Receiving a phone call (<script type="math/tex">p=1</script>), what can we say about the probability of a burglar and an earthquake, i.e. <script type="math/tex">P(b,e\|p=1)</script></p>
+</blockquote>
+
+<p>For <script type="math/tex">p=1</script> we have certainty for <script type="math/tex">a=1</script>, with <em>Bayes’ Theorem</em> we arrive at</p>
+
+<script type="math/tex; mode=display">P(b, e|a=1) = \frac{P(a=1|b, e)P(b)P(e)}{P(a=1)}</script>
+
+<p>The expressions in the numerator, we can read off from the tables above. The unknown marginal probability <script type="math/tex">P(a=1)</script> on the other hand is fixed by the normalization constraint.</p>
+
+<p>The probability for a burglar after a phonecall is given by the marginalization over the earthquake variable <em>e</em></p>
+
+<script type="math/tex; mode=display">P(b|a=1) = \sum_{e={0,1}} P(b,e|a=1)</script>
+
+<p>The probability of an earthquake on the other hand, is given by marginalization over the burglar <em>b</em> variable</p>
+
+<script type="math/tex; mode=display">P(e=1|p=1) =  \sum_{b={0,1}}\frac{P(a=1|b, e=1)P(b)P(e=1)}{P(a=1)}</script>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+<p>The only accessible variables to Fred at work were the phonecall <em>p</em> and the radio <em>r</em>. But knowing the circumstances summarized in the <strong>belief network</strong> and probabilities we were able to infer the probability of a burglar or an earthquake.</p>
+
+<p>In case of few and discrete variables, we are able to completely enumerate all hypotheses and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible.</p>
+
+<p>E.g. for a two component Gaussian mixture model</p>
+
+<script type="math/tex; mode=display">P(x| \mu_1, \sigma_1, \pi_1, \mu_2, \sigma_2, \pi_2) = \pi_1 \mathcal N (x| \mu_1, \sigma_1) + \pi_1 \mathcal N (x| \mu_2, \sigma_2)</script>
+
+<p>we have 5 independent continuous parameters. As before we could by discretize the space as is needed for working with a computer and again completely enumerate and evaluate.</p>
+
+<p>To reduce the uncertainty by say, a factor of 10, the costs for a grid method increases <strong>exponentially</strong> by a factor of <script type="math/tex">10^K</script>. Consequently we need a different approach, which we will discuss below.</p>
+
+</div>
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  <script src='/public/js/script.js'></script>
+</body>
+
+</html>
