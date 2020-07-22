@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+    4. Gaussian Processes &middot; Inference
+    
+  </title>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll("script[type='math/tex']").forEach(function (el) {
+        el.outerHTML = "\\(" + el.textContent + "\\)";
+      });
+      document.querySelectorAll("script[type='math/tex; mode=display']").forEach(function (el) {
+        el.outerHTML = "\\[" + el.textContent + "\\]";
+      });
+      var script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js";
+      document.head.appendChild(script);
+    }, false);
+  </script>
+
+  
+  <link rel="canonical" href="/gp/">
+  
+
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+</head>
+
+<body class="theme-base-0d">
+
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Bayesian Methods for Machine Learning</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item"
+      href="/">Overview</a>
+
+    
+
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/ei/">1. Bayesian Inference</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/mle/">1.1 Maximum Likelihood Estimation</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/reg/">1.2 Bayesian Regularization</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/lvmod/">2. Latent Variable Models</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/em/">2.1 General Expectation Maximation Algorithm</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/gmm/">2.2 Gaussian Mixture Models</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/vi/">3. Variational Inference</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item"
+      href="/vfe/">3.1 Variational Free Energy</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item active"
+      href="/gp/">4. Gaussian Processes</a>
+    
+    
+    
+    
+    
+
+    <!--
+    <a class="sidebar-nav-item" href="/archive/v1.1.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.1.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020. All rights reserved.
+    </p>
+  </div>
+</div>
+
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Inference</a>
+          <small>Machine Learning</small>
+        </h3>
+      </div>
+    </div>
+
+    <div class="container content">
+      <div class="page">
+  <h1 class="page-title">4. Gaussian Processes</h1>
+  <ul id="markdown-toc">
+  <li><a href="#gaussian-processes" id="markdown-toc-gaussian-processes">Gaussian Processes</a></li>
+</ul>
+
+<p>When hiking in the mountains not only the distance covered is interesting but also the altitude. The altitude along the track then is a 1-dimensional continuous function of the distance.</p>
+
+<p>To create a height profile of the track the altitude is measured at certain points along the path. The amount of data points of course is restricted to a finite number, although the altitude function is defined everywhere.</p>
+
+<p>After collecting the data, we want to construct the true function from the finite set of data points. Instead of fixing a parametric model function, we want to follow a different approach: To construct the function we want to derive a probability distribution over functions.</p>
+
+<h2 id="gaussian-processes">Gaussian Processes</h2>
+
+<p>To derive a probability distribution over functions, we need to introduce a probability distribution for each outcome along the path. The finite set of measurements <script type="math/tex">A(x_i)</script> can be used to infer the probability of the functional outcome for every possible value <script type="math/tex">x</script> in continuous set of positions along the countinuous path.</p>
+
+<script type="math/tex; mode=display">p(A(x)|A(x_1), \dots, A(x_k))</script>
+
+<p>But first, let’s think about the joint probability for the measurements. The values <script type="math/tex">A(x_i)</script> for each <script type="math/tex">x_i</script> are a scalars, so we could try to model each these values by a one dimensional gaussian random variable resulting in a fully factorized joint distribution.</p>
+
+<p>Compared to climbing, hiking trails vary smoothly with the position, so the values of the random variables will depend on each other. This imposes a correlation between the points at different positions. While close points are strongly correlated, points far from each other are almost uncorrelated.</p>
+
+<p>The factorized joint distribution, which is essentially a diagonal multivariate gaussian, is not able to model these correlations. Correlations between different measured values <script type="math/tex">A(x_i)</script> are given by finite off-diagonal entries in the covariance.</p>
+
+<p>By replacing the diagonal by a non-diagonal covariance matrix, the multivariate gaussian distribution captures both observed qualitative features of our system.</p>
+
+<p><strong>Gaussian Process</strong> The probability distribution of a function <script type="math/tex">y(x)</script> is a Gaussian process if for any finite selection of points <script type="math/tex">x_1,\dots,x_k</script>, the density <script type="math/tex">p(y(x_1),\dots,y(x_k))</script> is Gaussian.</p>
+
+<p>Being a multivariate gaussian, the joint distribution over the k variables <script type="math/tex">A(x_1), \dots, A(x_k)</script> is fully specified by the mean and the covariance. The mean and the covariance depend neccesarily on the finite selection of points <script type="math/tex">x_1,\dots,x_k</script>. Otherwise the outcome would be sampled from the same distribution for all positions and the model wouldn’t be able to sample non-constant functions.</p>
+
+<p>The mean is set to be zero for symmetry reasons, since we lack prior knowledge. Additionally, the correlations given by real numbers are symmetric. The elements of the covariance matrix for all possible positional pairings will be modeled by a suitable kernel function <script type="math/tex">k</script> decaying with the distance between two points</p>
+
+<script type="math/tex; mode=display">cov(A_i, A_j) = k(x_i, x_j) = k(||x_i - x_j||) = \Sigma_{ij}</script>
+
+<p>A sample drawn from this Gaussian is a vector of <script type="math/tex">k</script> elements corresponding to the vector of <script type="math/tex">k</script> positions <script type="math/tex">x_i</script>. The ordering of these elements are fixed by the ordering of the covariance matrix elements, which in turn are determined by the ordering of the positional measurements. While the positional values follow no specific ordering, the ith element of the sample is paired with the ith element of the positional vector.</p>
+
+<p>Remember, we aimed for a probability distribution over functions in the first place. Lets check with few lines of code wether the sample resembles a function already.</p>
+
+</div>
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  <script src='/public/js/script.js'></script>
+</body>
+
+</html>

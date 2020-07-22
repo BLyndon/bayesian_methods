@@ -1,0 +1,17 @@
+# Setup
+title: Inference
+tagline: "Machine Learning"
+description: "Bayesian Methods for Machine Learning"
+url: https://github.com/BLyndon/bayesian_methods
+baseurl: ""
+permalink: pretty
+
+# About/contact
+author:
+  name: Benjamin Heil
+  url: https://github.com/BLyndon/
+  email: Benjamin.Heil@mail.de
+
+# Custom vars
+version: 1.1.0
+google_analytics_id: #UA-XXXX-Y

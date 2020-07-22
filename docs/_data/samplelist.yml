@@ -1,0 +1,27 @@
+toc:
+  - title: Bayesian Inference
+    subfolderitems:
+      - page: Exact Inference
+        url: /ei/
+      - page: Maximum Likelihood Estimation
+        url: /mle/
+      - page: Bayesian Regularization
+        url: /reg/
+  - title: Latent Variable Models
+    subfolderitems:
+      - page: Motivatation
+        url: /lvmod/
+      - page: EM-Algorithm
+        url: /em/
+      - page: Application - Gaussian Mixture Model
+        url: /gmm/
+  - title: Variational Inference
+    subfolderitems:
+      - page: Variational Lower Bound
+        url: /vi/
+      - page: Variational Free Energy
+        url: /vfe/
+  - title: Gaussian Processes
+    subfolderitems:
+      - page: Motivation
+        url: /gpmot/
