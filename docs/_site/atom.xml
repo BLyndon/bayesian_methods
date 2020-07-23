@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Inference</title>
- <link href="https://github.com/BLyndon/bayesian_methods/atom.xml" rel="self"/>
- <link href="https://github.com/BLyndon/bayesian_methods/"/>
- <updated>2020-07-22T22:56:29+02:00</updated>
- <id>https://github.com/BLyndon/bayesian_methods</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2020-07-23T13:48:06+02:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name>Benjamin Heil</name>
    <email>Benjamin.Heil@mail.de</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>4. Gaussian Processes</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/gp/"/>
+   <link href="http://localhost:4000/bayesian_methods/gp/"/>
    <updated>2020-07-22T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/gaussian-process</id>
+   <id>http://localhost:4000/bayesian_methods/gaussian-process</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#gaussian-processes&quot; id=&quot;markdown-toc-gaussian-processes&quot;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -57,9 +57,9 @@
  
  <entry>
    <title>3. Variational Inference</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/vi/"/>
+   <link href="http://localhost:4000/bayesian_methods/vi/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/variational_inference</id>
+   <id>http://localhost:4000/bayesian_methods/variational_inference</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#variational-lower-bound-decomposition&quot; id=&quot;markdown-toc-variational-lower-bound-decomposition&quot;&gt;Variational Lower Bound Decomposition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -98,9 +98,9 @@
  
  <entry>
    <title>3.1 Variational Free Energy</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/vfe/"/>
+   <link href="http://localhost:4000/bayesian_methods/vfe/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/variational_free_energy</id>
+   <id>http://localhost:4000/bayesian_methods/variational_free_energy</id>
    <content type="html">&lt;p&gt;In isolated many particle systems the energy &lt;script type=&quot;math/tex&quot;&gt;E(x, J)&lt;/script&gt; of the system is determined by the state &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and the interactions &lt;script type=&quot;math/tex&quot;&gt;J&lt;/script&gt; between the degrees of freedom. Given an inverse temperature &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, the probability finding the system in state $x$ is described by&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x|\beta, J) = \frac{\exp(-\beta E(x, J))}{Z_p(\beta, J)}&lt;/script&gt;
@@ -135,9 +135,9 @@
  
  <entry>
    <title>1.2 Bayesian Regularization</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/reg/"/>
+   <link href="http://localhost:4000/bayesian_methods/reg/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/regularization</id>
+   <id>http://localhost:4000/bayesian_methods/regularization</id>
    <content type="html">&lt;p&gt;The prior distribution introduces regularization in a natural way. Adding regularization to the cost function constrains the magnitude of the parameters. The same can be achieved by a the prior &lt;script type=&quot;math/tex&quot;&gt;p(\theta)&lt;/script&gt; in a bayesian model, forcing smaller magnitudes by a higher probability around the origin.&lt;/p&gt;
 
 &lt;p&gt;As an example, we consider a prior distribution &lt;script type=&quot;math/tex&quot;&gt;p(\theta) = \mathcal N(\theta; 0, I/\lambda)&lt;/script&gt;, leading to the following logposterior&lt;/p&gt;
@@ -150,48 +150,48 @@
  
  <entry>
    <title>Overview</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/2020/07/21/overview/"/>
+   <link href="http://localhost:4000/2020/07/21/overview/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/2020/07/21/overview</id>
-   <content type="html">&lt;p&gt;Some comprehensive notes on the concepts of Bayesian inference in machine learning. They lay the foundation for the methods I use in the Notebooks found in the &lt;a href=&quot;https://github.com/BLyndon/bayesian_methods&quot;&gt;repository&lt;/a&gt;. The following great books I found very helpful&lt;/p&gt;
+   <id>http://localhost:4000/2020/07/21/overview</id>
+   <content type="html">&lt;p&gt;Some comprehensive notes on the concepts of Bayesian inference in machine learning. They lay the foundation for the methods I use in the Notebooks found in the &lt;a href=&quot;https://github.com/BLyndon/bayesian_methods&quot;&gt;repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h3&gt;Bayesian Inference&lt;/h3&gt;
 &lt;ul&gt;
 
-&lt;li&gt;&lt;a href=&quot;/ei/&quot;&gt;Exact Inference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/ei/&quot;&gt;Exact Inference&lt;/a&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;a href=&quot;/mle/&quot;&gt;Maximum Likelihood Estimation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/mle/&quot;&gt;Maximum Likelihood Estimation&lt;/a&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;a href=&quot;/reg/&quot;&gt;Bayesian Regularization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/reg/&quot;&gt;Bayesian Regularization&lt;/a&gt;&lt;/li&gt;
 
 &lt;/ul&gt;
 
 &lt;h3&gt;Latent Variable Models&lt;/h3&gt;
 &lt;ul&gt;
 
-&lt;li&gt;&lt;a href=&quot;/lvmod/&quot;&gt;Motivatation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/lvmod/&quot;&gt;Motivatation&lt;/a&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;a href=&quot;/em/&quot;&gt;EM-Algorithm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/em/&quot;&gt;EM-Algorithm&lt;/a&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;a href=&quot;/gmm/&quot;&gt;Application - Gaussian Mixture Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/gmm/&quot;&gt;Application - Gaussian Mixture Model&lt;/a&gt;&lt;/li&gt;
 
 &lt;/ul&gt;
 
 &lt;h3&gt;Variational Inference&lt;/h3&gt;
 &lt;ul&gt;
 
-&lt;li&gt;&lt;a href=&quot;/vi/&quot;&gt;Variational Lower Bound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/vi/&quot;&gt;Variational Lower Bound&lt;/a&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;a href=&quot;/vfe/&quot;&gt;Variational Free Energy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/vfe/&quot;&gt;Variational Free Energy&lt;/a&gt;&lt;/li&gt;
 
 &lt;/ul&gt;
 
 &lt;h3&gt;Gaussian Processes&lt;/h3&gt;
 &lt;ul&gt;
 
-&lt;li&gt;&lt;a href=&quot;/gpmot/&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://localhost:4000/gpmot/&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt;
 
 &lt;/ul&gt;
 </content>
@@ -199,9 +199,9 @@
  
  <entry>
    <title>1.1 Maximum Likelihood Estimation</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/mle/"/>
+   <link href="http://localhost:4000/bayesian_methods/mle/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/mle</id>
+   <id>http://localhost:4000/bayesian_methods/mle</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#maximum-likelihood-estimation&quot; id=&quot;markdown-toc-maximum-likelihood-estimation&quot;&gt;Maximum Likelihood Estimation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#maximum-a-posteriori&quot; id=&quot;markdown-toc-maximum-a-posteriori&quot;&gt;Maximum A-Posteriori&lt;/a&gt;&lt;/li&gt;
@@ -232,9 +232,9 @@
  
  <entry>
    <title>2. Latent Variable Models</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/lvmod/"/>
+   <link href="http://localhost:4000/bayesian_methods/lvmod/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/latent_variable</id>
+   <id>http://localhost:4000/bayesian_methods/latent_variable</id>
    <content type="html">&lt;p&gt;The concept of latent or hidden variables plays a central role in generative models, i.e. models based on a full probability distribution over all variables. The observable features in these models may have sophisticated correlations between each other resulting in complex probability distributions. By introducing latent variables to the model, the complexity can be mapped to simpler and more tractable joint distributions of the expanded space. The latent variables can be introduced by marginalisation&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x) = \sum_z p(x, z)&lt;/script&gt;
@@ -261,9 +261,9 @@
  
  <entry>
    <title>2.2 Gaussian Mixture Models</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/gmm/"/>
+   <link href="http://localhost:4000/bayesian_methods/gmm/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/gmm</id>
+   <id>http://localhost:4000/bayesian_methods/gmm</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#expectation-step&quot; id=&quot;markdown-toc-expectation-step&quot;&gt;Expectation Step&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#maximation-step&quot; id=&quot;markdown-toc-maximation-step&quot;&gt;Maximation Step&lt;/a&gt;    &lt;ul&gt;
@@ -347,9 +347,9 @@
  
  <entry>
    <title>1. Bayesian Inference</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/ei/"/>
+   <link href="http://localhost:4000/bayesian_methods/ei/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/exact_inference</id>
+   <id>http://localhost:4000/bayesian_methods/exact_inference</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#exact-inference-the-burglar-alarm&quot; id=&quot;markdown-toc-exact-inference-the-burglar-alarm&quot;&gt;Exact Inference: The Burglar Alarm&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#conclusion&quot; id=&quot;markdown-toc-conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
@@ -380,12 +380,14 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;P(b, e, r, a, p) = P(b)P(e)P(a|b,e)P(p|a)P(r |e)&lt;/script&gt;
 
-&lt;p&gt;where we have introduced the following variables
-- burglar &lt;em&gt;b&lt;/em&gt;
-- earthquake &lt;em&gt;e&lt;/em&gt;
-- radio &lt;em&gt;r&lt;/em&gt;
-- alarm &lt;em&gt;a&lt;/em&gt;
-- phonecall &lt;em&gt;p&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;where we have introduced the following variables&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;burglar &lt;em&gt;b&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;earthquake &lt;em&gt;e&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;radio &lt;em&gt;r&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;alarm &lt;em&gt;a&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;phonecall &lt;em&gt;p&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Now, with help of prior knowledge, we can estimate the probabilities and list them in the table below.&lt;/p&gt;
 
@@ -482,9 +484,9 @@
  
  <entry>
    <title>2.1 General Expectation Maximation Algorithm</title>
-   <link href="https://github.com/BLyndon/bayesian_methods/em/"/>
+   <link href="http://localhost:4000/bayesian_methods/em/"/>
    <updated>2020-07-21T00:00:00+02:00</updated>
-   <id>https://github.com/BLyndon/bayesian_methods/em</id>
+   <id>http://localhost:4000/bayesian_methods/em</id>
    <content type="html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#the-em-algorithm&quot; id=&quot;markdown-toc-the-em-algorithm&quot;&gt;The EM-algorithm&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#update-formulas&quot; id=&quot;markdown-toc-update-formulas&quot;&gt;Update Formulas&lt;/a&gt;&lt;/li&gt;

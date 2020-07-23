@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 3. Variational Inference
-permalink: /vi/
+permalink: /bayesian_methods/vi/
 ---
 
 * ToC

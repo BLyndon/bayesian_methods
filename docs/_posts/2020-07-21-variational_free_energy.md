@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 3.1 Variational Free Energy
-permalink: /vfe/
+permalink: /bayesian_methods/vfe/
 ---
 * ToC
 {:toc}

@@ -1,7 +1,7 @@
 ---
 layout: "page"
 title: "1. Bayesian Inference"
-permalink: /ei/
+permalink: /bayesian_methods/ei/
 ---
 * ToC
 {:toc}
