@@ -2,8 +2,8 @@
 title: Inference
 tagline: "Machine Learning"
 description: "Bayesian Methods for Machine Learning"
-url: "https://BLyndon.github.io/bayesian_methods"
-baseurl: ""
+url: "https://BLyndon.github.io"
+baseurl: "/bayesian_methods"
 permalink: pretty
 
 # About/contact
