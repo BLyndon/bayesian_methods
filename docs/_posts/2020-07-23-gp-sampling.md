@@ -57,9 +57,9 @@ plt.show()
 
 Now we vary the correlation length from $$l=0.5$$ to $$l=2.5$$ and draw samples from the corresponding distribution.
 
-|              ![GP samples](../images/4_1_vary_correl.png "GP samples")               |
-| :----------------------------------------------------------------------------------: |
-| Five samples drawn from the distribution with increasing correlation length $$l=1$$. |
+|             ![GP samples](../images/4_1_vary_correl.png "GP samples")              |
+| :--------------------------------------------------------------------------------: |
+| Five samples drawn from the distribution with increasing correlation length $$l$$. |
 
 Finally we examine the limits $$l \to 0$$ and $$l \to \infty$$.
 
