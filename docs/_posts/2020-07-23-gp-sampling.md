@@ -6,13 +6,15 @@ permalink: /gps/
 * ToC
 {:toc}
 
-To test our theoretical derivation, we fix the kernel $$k$$ to
+To test our theoretical derivation, we present a short python script. The full script can by found in the notebook [here](https://github.com/BLyndon/bayesian_methods/blob/master/notebooks/gp_sampling.ipynb). 
+
+First of all, we need to fix the kernel $$k$$
 
 $$
     k(x_i, x_j) = \exp \left( - \frac{|x_i - x_j|}{2 l^2} \right)
 $$
 
-and present a short python script. The parameter $$l$$ is the correlation length. the First, we define the kernel function
+The parameter $$l$$ is the correlation length. Now we can start with python
 
 ~~~ python
 def kernel(d, l=1):
