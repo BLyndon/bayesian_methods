@@ -23,5 +23,6 @@ toc:
         url: /vfe/
   - title: Gaussian Processes
     subfolderitems:
-      - page: Motivation
+      - page: Introduction
         url: /gpmot/
+      - page: Sampling from a distribution
