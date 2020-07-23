@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 1.2 Bayesian Regularization
-permalink: /bayesian_methods/reg/
+permalink: /reg/
 ---
 * ToC
 {:toc}

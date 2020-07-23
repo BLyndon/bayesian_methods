@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 2. Latent Variable Models
-permalink: /bayesian_methods/lvmod/
+permalink: /lvmod/
 ---
 The concept of latent or hidden variables plays a central role in generative models, i.e. models based on a full probability distribution over all variables. The observable features in these models may have sophisticated correlations between each other resulting in complex probability distributions. By introducing latent variables to the model, the complexity can be mapped to simpler and more tractable joint distributions of the expanded space. The latent variables can be introduced by marginalisation
 

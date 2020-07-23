@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 4. Gaussian Processes
-permalink: /bayesian_methods/gp/
+permalink: /gp/
 ---
 * ToC
 {:toc}
