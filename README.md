@@ -1,5 +1,3 @@
-# Bayesian Methods
+# Bayesian Methods for Machine Learning
 
-- Theoretical Introduction to Bayesian Inference: [Introduction](theoretical_background/1_introduction.md)
-
-- Gaussian Mixture Model and Expectation Maximation Algorithm: [Notebook](notebooks/GMM-EM.ipynb)
+Visit the [introduction](https://blyndon.github.io/bayesian_methods/) to learn about the mathmatical background used by the methods in this repository.
