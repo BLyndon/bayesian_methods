@@ -26,11 +26,9 @@ def get_vortex_data(path, asarray=False, batch_size=32):
 
     U=scaleC(U)
     x_train, x_test = train_test_split(U, test_size=0.33, random_state=42)
-    train_size = x_train.shape[0]
-    test_size = x_test.shape[0]
     print('Database size: {}'.format(np.shape(U)))
-    print('Train Set size: {}'.format(np.shape(x_train)))
-    print('Test Set size: {}'.format(np.shape(x_test)))
+    print('Train Set size: {}'.format(np.shape(x_train)[0]))
+    print('Test Set size: {}'.format(np.shape(x_test)[0]))
     if asarray:
         return x_train, x_test, x_train.shape, x_test.shape
     else:
