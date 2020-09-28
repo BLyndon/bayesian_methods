@@ -182,18 +182,16 @@ class Plotter:
         else:
             z, _ = model.encoder(x)
 
+        y_categorical = tf.argmax(y, axis=1)
 
-w
-y_categorical = tf.argmax(y, axis=1)
-
-plt.figure(figsize=figsize)
-plt.scatter(z[:, 0], z[:, 1], c=y_categorical,
-            alpha=.4, s=3**2, cmap='tab20')
-plt.colorbar()
-plt.title(net + '-Encoder')
-plt.xlabel('z1')
-plt.ylabel('z2')
-plt.show()
+        plt.figure(figsize=figsize)
+        plt.scatter(z[:, 0], z[:, 1], c=y_categorical,
+                    alpha=.4, s=3**2, cmap='tab20')
+        plt.colorbar()
+        plt.title(net + '-Encoder')
+        plt.xlabel('z1')
+        plt.ylabel('z2')
+        plt.show()
 
 
 #######################################################################################
