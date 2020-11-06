@@ -120,7 +120,7 @@ $$
     P(\theta | X) = \frac{P(X | \theta) P(\theta)}{P(X)}
 $$
 
-Then the the value for $\theta$ is given by
+Then the the value for $$\theta$$ is given by
 
 $$
     \theta_{MAP} = \underset{\theta}\text{argmax} P(\theta | X)
@@ -128,7 +128,7 @@ $$
 
 which is called the **Maximum A Postiori** estimation.
 
-Another choice is given by the expectation of $\theta$
+Another choice is given by the expectation of $$\theta$$
 
 $$
     \langle \theta \rangle = \int \theta P(\theta| X) d \theta
