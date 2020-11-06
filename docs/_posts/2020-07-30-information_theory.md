@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 4. Information Theory
+title: 5. Information Theory
 permalink: /it/
 ---
 * ToC
