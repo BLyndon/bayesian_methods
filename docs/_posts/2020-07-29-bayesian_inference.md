@@ -61,7 +61,7 @@ This implies, in particular, that we have certainty for $$a=1$$, $$e=1$$, if we 
 
 Now we can formulate the inference task: 
 
->Receiving a phone call ($$p=1$$), what can we say about the probability of a burglar and an earthquake, i.e. P(b,e|p=1)*
+>Receiving a phone call ($$p=1$$), what can we say about the probability of a burglar and an earthquake, i.e. P(b,e;p=1)
 
 For $$p=1$$ we have certainty for $a=1$, then with *Bayes' Theorem* we arrive at
 
