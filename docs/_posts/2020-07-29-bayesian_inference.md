@@ -105,7 +105,7 @@ To reduce the uncertainty of $$K$$ parameters, we need to grid each dimension. I
 Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space $$\mathcal H$$ that fits the observations well. The hypotheses in $$\mathcal H$$ are parametrized by $$\theta$$. Now, the idea is to learn the value of $$\theta$$, such that the probability observing the data $$X$$ from the hypothesis distribution is maximized. This is summarized under the term **maximum likelihood estimation** (MLE), as we are maximizing the **likelihood** function. For convenience we will maximize the **loglikelihood** instead
 
 $$
-    \underset{\theta}\text{argmax} \log P(X | \theta, \mathcal H)
+    \underset{\theta}{\text{argmax}} \log P(X | \theta, \mathcal H)
 $$
 
 The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $$\theta$$ fixed by the real data distribution, the bayesians observe a single fixed dataset $$\mathcal D$$ an infer an uncertainty for the parameter $$\theta$$.
@@ -123,7 +123,7 @@ $$
 Then the the value for $$\theta$$ is given by
 
 $$
-    \theta_{MAP} = \underset{\theta}\text{argmax} P(\theta | X)
+    \theta_{MAP} = \underset{\theta}{\text{argmax}} P(\theta | X)
 $$ 
 
 which is called the **Maximum A Postiori** estimation.
