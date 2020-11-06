@@ -48,7 +48,7 @@ We assume a small probability $$f$$ of a false alarm caused by some other event.
 
 *Likelihood function*
 
-| $$P(a=0;b,e)$$ | $$b = 0$$ | $$b = 1$$  |
+| $$P(a=0;b,e)$$ | $$b = 0$$ | $$b = 1$$ |
 | ------------- |:-------------:| -----:|
 | $$e = 0$$ | $$(1 − f)$$ | $$(1−f)(1−α_b)$$ |
 | $$e = 1$$ | $$(1−f)(1−α_e)$$ | $$(1−f)(1−α_b)(1−α_e)$$ |
