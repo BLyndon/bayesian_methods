@@ -38,18 +38,18 @@ where we have introduced the following variables
 Now, with help of prior knowledge, we can estimate the probabilities and list them in a table.
 
 *Prior distributions*
-| $P(x)$        | $x = b$           | $x = e$  |
+| $$P(x)$$        | $$x = b$$           | $$x = e$$  |
 | ------------- |:-------------:| -----:|
-| $x = 0$      | $1 - \beta$      |   $1 - \epsilon$ |
-| $x = 1$      | $\beta$ | $\epsilon$ |
+| $$x = 0$$      | $$1 - \beta$$      |   $$1 - \epsilon$$ |
+| $$x = 1$$      | $$\beta$$ | $$\epsilon$$ |
 
 We assume a small probability $$f$$ of a false alarm caused by some other event. The $$\alpha_b$$ denotes the reliability of the alarm in case of a burglary and the earthquake triggers the alarm with a probability of $$\alpha_e$$.
 
 *Likelihood function*
-| $P(a=0; b, e)$ | $b = 0$         | $b = 1$  |
+| $$P(a=0; b, e)$$ | $$b = 0$$         | $$b = 1$$  |
 | ------------- |:-------------:| -----:|
-| $e = 0$         | $(1 − f)$     |   $(1−f)(1−α_b)$ |
-| $e = 1$         | $(1−f)(1−α_e)$| $(1−f)(1−α_b)(1−α_e)$|
+| $$e = 0$$         | $$(1 − f)$$     |   $$(1−f)(1−α_b)$$ |
+| $$e = 1$$         | $$(1−f)(1−α_e)$$| $$(1−f)(1−α_b)(1−α_e)$$|
 
 Further it seems plausible to assume
 
@@ -61,7 +61,7 @@ This implies, in particular, that we have certainty for $$a=1$$, $$e=1$$, if we 
 
 Now we can formulate the inference task: 
 
-*Receiving a phone call ($$p=1$$), what can we say about the probability of a burglar and an earthquake, i.e. $$P(b,e|p=1)$$*
+>Receiving a phone call ($$p=1$$), what can we say about the probability of a burglar and an earthquake, i.e. P(b,e|p=1)*
 
 For $$p=1$$ we have certainty for $a=1$, then with *Bayes' Theorem* we arrive at
 
