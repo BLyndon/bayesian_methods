@@ -57,7 +57,7 @@ $$
 P(p=1|a=0)=0, \quad P(r=1|e=0)=0
 $$
 
-This implies, in particular, that we have certainty for $a=1$, $e=1$, if we observe $$p=1$$, $$r=1$$ respectively.
+This implies, in particular, that we have certainty for $$a=1$$, $$e=1$$, if we observe $$p=1$$, $$r=1$$ respectively.
 
 Now we can formulate the inference task: 
 
@@ -84,7 +84,7 @@ P(e=1|p=1) =  \sum_{b={0,1}}\frac{P(a=1|b, e=1)P(b)P(e=1)}{P(a=1)}
 $$
 
 #### Conclusion
-The only accessible variables to Fred at work were the phonecall *p* and the radio *r*. But knowing the circumstances summarized in the **belief network** and the probabilities we were able to infer the probability of a burglar or an earthquake.
+The only accessible variables to Fred at work were the phonecall $$p$$ and the radio $$r$$. But knowing the circumstances summarized in the **belief network** and the probabilities we were able to infer the probability of a burglar or an earthquake.
 
 In case of few and discrete variables, we are able to completely enumerate all hypotheses and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible. 
 
@@ -100,13 +100,13 @@ To reduce the uncertainty of $$K$$ parameters, we need to grid each dimension. I
 
 ## Maximum Likelihood Estimation
 
-Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space $\mathcal H$ that fits the observations well. The hypotheses in $\mathcal H$ are parametrized by $\theta$. Now, the idea is to learn the value of $\theta$, such that the probability observing the data $X$ from the hypothesis distribution is maximized. This is summarized under the term **maximum likelihood estimation** (MLE), as we are maximizing the **likelihood** function $$P(X|\theta, \mathcal H)$$. For convenience we will maximize the **loglikelihood** instead
+Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space $$\mathcal H$$ that fits the observations well. The hypotheses in $$\mathcal H$$ are parametrized by $$\theta$$. Now, the idea is to learn the value of $$\theta$$, such that the probability observing the data $$X$$ from the hypothesis distribution is maximized. This is summarized under the term **maximum likelihood estimation** (MLE), as we are maximizing the **likelihood** function $$P(X|\theta, \mathcal H)$$. For convenience we will maximize the **loglikelihood** instead
 
 $$
 \underset{\theta}\text{argmax} \log P(X | \theta, \mathcal H)
 $$
 
-The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $$\theta$$ fixed by the real data distribution, the bayesians observe a single fixed dataset $$\mathcal D$$ an infer an uncertainty for the parameter $\theta$.
+The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $$\theta$$ fixed by the real data distribution, the bayesians observe a single fixed dataset $$\mathcal D$$ an infer an uncertainty for the parameter $$\theta$$.
 
 ## Maximum A-Posteriori
 
