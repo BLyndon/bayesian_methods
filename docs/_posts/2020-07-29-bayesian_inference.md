@@ -39,7 +39,7 @@ Now, with help of prior knowledge, we can estimate the probabilities and list th
 
 *Prior distributions*
 
-| $$P(x)$$| $$x = b$$ | $$x = e$$  |
+| $$P(x)$$| $$x = b$$ | $$x = e$$ |
 | ------------- |:-------------:| -----:|
 | $$x = 0$$ | $$1 - \beta$$ | $$1 - \epsilon$$ |
 | $$x = 1$$ | $$\beta$$ | $$\epsilon$$ |
@@ -50,7 +50,7 @@ We assume a small probability $$f$$ of a false alarm caused by some other event.
 | $$P(a=0; b, e)$$ | $$b = 0$$ | $$b = 1$$  |
 | ------------- |:-------------:| -----:|
 | $$e = 0$$ | $$(1 − f)$$ | $$(1−f)(1−α_b)$$ |
-| $$e = 1$$ | $$(1−f)(1−α_e)$$| $$(1−f)(1−α_b)(1−α_e)$$|
+| $$e = 1$$ | $$(1−f)(1−α_e)$$ | $$(1−f)(1−α_b)(1−α_e)$$ |
 
 Further it seems plausible to assume
 
