@@ -1,17 +1,23 @@
 ---
 layout: page
-title: Information Theory
+title: 4. Information Theory
+permalink: /it/
 ---
+* ToC
+{:toc}
+
+---
+
 ## Self Information
 We start by defining a completely general term of information $$I(x)$$ by some key properties we know from experience.
 
-Lets consider a single cirumstande described by a random variable $$x$$. If a certain circumstance is completely certain, i.e. $$p(x)=1$$, we know in advance, that this circumstance will happen. Since we were certain in advance, no information was gained by observing it. On the other hand, for low probabilities, the circumstance was very unexpected and by observing this circumstance, we gain a lot of information.
+Let's consider a single cirumstance described by a random variable $$x$$. If a certain circumstance is completely certain, i.e. $$p(x)=1$$, we know in advance, that this circumstance will happen. Since we were certain in advance, no information was gained by observing it. On the other hand, for low probabilities, the circumstance is very unexpected and by observing this circumstance, we gain a lot of information.
 
-For two completely independent events, we learn from the first event and the gained information nothing about the second event. So by observing the second event we have a gain of the full information from observing it. That means, the informations from observing both events sum up.
+For two completely independent events, by observing the first event we gain no information about the second event. So by observing the second event we gain the full information from its observation, without any influence from the first event. This implies, that the information gained by observing both events sums up.
 
-The second property might turn our focus to the logarithm function. From the first property, we know that the probabilty plays an explicit role for the definition of the information.
+The second property might turn our focus to the logarithm function. From the first property, we know that the probabilty alters the gained information.
 
-The expression $$-\log p(x)$$ fulfills the property of vanishing information gain form $$p(x)$$ and high information gain for $$p \to 0$$, as shown in the plot. Also the second property is fullfiled
+The expression $$-\log p(x)$$ fulfills the property of a vanishing gain of information in case of certainty $$p(x)=1$$ and a high information gain for $$p \to 0$$. The second property is fulfilled as well
 
 $$
     I(x, x') = - \log p(x, x') = - \log p(x)p(x') = -\log p(x) - \log p(x') = I(x) + I(x')
@@ -27,7 +33,7 @@ $$
 
 The entropy $$H_p$$ can be interpreted as the amount of uncertainty. This interpretation is motivated by three key properties.
 
-Assuming $$\Omega$$ states with probabilities $$p(x_k) = p_k$$. The highest uncertainty is given, if each state has equal probability. Consider the case of $$p_k' = 1$$ while the probabilities for the remaining states vanish. Then we are completely certain about the state of the system, while for equal probabilites the result could by any of the $$\Omega$$ states.
+Assuming $$\Omega$$ possible states with probabilities $$p(x_k) = p_k$$. Then, the highest uncertainty is given, if each state has equal probability. Consider the case of $$p_k' = 1$$ while the probabilities for the remaining states vanish. Then we are absolutely certain about the state of the system, since state k is the only possible state. In contrast, for equal probabilites the result can be any of the $$\Omega$$ states.
 
 For uniformly distributed states, we have $$p_k = \frac{1}{\Omega}$$, $$k=1, ..., \Omega$$
 
@@ -37,13 +43,13 @@ $$
 \end{aligned}
 $$
 
-The second key property statea, that taking into account more states with probability $$p(x)=0$$ must not change the uncertainty of the system. By $-p \log p \to 0$$ for $$p \to 0$$, these particular terms in the entropy vanish and the finite value stays the same
+The second key property implies, that taking into account more states with probability $$p(x)=0$$ must not change the uncertainty of the system. By $$-p \log p \to 0$$ for $$p \to 0$$, these particular terms in the entropy vanish and the finite value stays the same
 
 $$
     H_p(p_1, ..., p_\Omega, 0, ...) = H_p(p_1, ..., p_\Omega)
 $$
 
-The last property states, that the entropy changes for conditional probabilities. The conditional probability expects, that we know that some circumstamces are certain and we gain this certainty by observing them. Performing measurements, intuitively changes the uncertainty of the system.
+From the last property follows, that the entropy changes for conditional probabilities. The conditional probability expects, that we know that some circumstamces are certain and we gain this certainty by observing them. Performing measurements, intuitively changes the uncertainty of the system.
 
 We start from a joint distribution p(A, B) with
 
@@ -85,7 +91,6 @@ $$
 ## Kullback-Leibler Divergence
 
 Sources
-+ High Bias
 + Mackkay
 + Sethna, stat. physics
 + Goodfellow
