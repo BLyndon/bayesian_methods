@@ -101,7 +101,7 @@ To reduce the uncertainty of $$K$$ parameters, we need to grid each dimension. I
 
 ## Maximum Likelihood Estimation
 
-Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space $$\mathcal H$$ that fits the observations well. The hypotheses in $$\mathcal H$$ are parametrized by $$\theta$$. Now, the idea is to learn the value of $$\theta$$, such that the probability observing the data $$X$$ from the hypothesis distribution is maximized. This is summarized under the term **maximum likelihood estimation** (MLE), as we are maximizing the **likelihood** function $$P(X;\theta, \mathcal H)$$. For convenience we will maximize the **loglikelihood** instead
+Instead of enumerating all hypotheses, we will search for a single hypothesis from the hypothesis space $$\mathcal H$$ that fits the observations well. The hypotheses in $$\mathcal H$$ are parametrized by $$\theta$$. Now, the idea is to learn the value of $$\theta$$, such that the probability observing the data $$X$$ from the hypothesis distribution is maximized. This is summarized under the term **maximum likelihood estimation** (MLE), as we are maximizing the **likelihood** function $$P(X; \theta, \mathcal H)$$. For convenience we will maximize the **loglikelihood** instead
 
 $$
     \underset{\theta}\text{argmax} \log P(X | \theta, \mathcal H)
