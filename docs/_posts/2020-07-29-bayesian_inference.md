@@ -134,7 +134,7 @@ $$
     \langle \theta \rangle = \int \theta P(\theta| X) d \theta
 $$
 
-which is called **Bayes estimate** 
+which is called **Bayes estimate**.
 
 ## Regularization
 
