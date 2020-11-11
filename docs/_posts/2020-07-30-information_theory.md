@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 5. Information Theory
+title: 6. Information Theory
 permalink: /it/
 ---
 * ToC
@@ -9,7 +9,7 @@ permalink: /it/
 ---
 
 ## Self Information
-We start by defining a completely general term of information $$I(x)$$ by some key properties we know from experience.
+We start our discussion on information theory by defining a completely general term of information $$I(x)$$ by some key properties we know from experience.
 
 Let's consider a single cirumstance described by a random variable $$x$$. If a certain circumstance is completely certain, i.e. $$p(x)=1$$, we know in advance, that this circumstance will happen. Since we were certain in advance, no information was gained by observing it. On the other hand, for low probabilities, the circumstance is very unexpected and by observing this circumstance, we gain a lot of information.
 
@@ -49,9 +49,9 @@ $$
     H_p(p_1, ..., p_\Omega, 0, ...) = H_p(p_1, ..., p_\Omega)
 $$
 
-From the last property follows, that the entropy changes for conditional probabilities. The conditional probability expects, that we know that some circumstamces are certain and we gain this certainty by observing them. Performing measurements, intuitively changes the uncertainty of the system.
+From the last property follows, that the entropy changes for conditional probabilities. The conditional probability expects certainty for some circumstamces and we gain this certainty by observing them. Intuitively, performing measurements changes the uncertainty of the system.
 
-We start from a joint distribution p(A, B) with
+We start from the joint distribution p(A, B) with
 
 $$
     p(A_j, B_k) = r_{jk}
@@ -75,13 +75,13 @@ $$
     \sum_k p(A_k|B_l) = \sum_k c_{kl} = 1
 $$
 
-Before the measurement of $$B$$, the uncertainty of the sytem is given by $$H_p(A)$$ and $$H_p(B)$$. The joint probability then is given by
+Before the measurement of $$B$$, the uncertainty of the sytem is described by $$H_p(A)$$ and $$H_p(B)$$. The joint probability then is given by
 
 $$
     p(A, B) = p(c_{11} q_1, ... , c_{\Omega M}q_M)
 $$
 
-After we measure $$B$$, the uncertainty decreases by $$H_p(B)$$ and we have
+Measuring $$B$$ decreases the uncertainty by $$H_p(B)$$ and we have
 
 $$
     p(A|B) = p(c1l, . . . , cΩl)
