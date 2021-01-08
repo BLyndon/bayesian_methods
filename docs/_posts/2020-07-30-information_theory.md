@@ -91,13 +91,54 @@ Measuring $$B$$ decreases the uncertainty by $$H_p(B)$$ and we have
 $$
     p(A|B) = p(c_{1l}, . . . , c_{Ωl})
 $$
-
+--->
 
 ## Kullback-Leibler Divergence
 
-Sources
-+ Mackkay
-+ Sethna, stat. physics
-+ Goodfellow
-+ Bishop
---->
+The Kullback-Leibler divergence for two probability distributions $$p(x)$$, $$q(x)$$ is defined as
+
+$$
+    \mathcal{KL}\left(p || q\right) = \mathbb E_{x \sim p}\left[\log \frac{p(x)}{q(x)}\right]
+$$
+
+Note, the Kullback-Leibler divergence is neither symmetric nor does it satisfy the triangle inequality. Therefore, it is not a metric and cannot be interpreted as distance.
+
+The most important property is the non-negativity
+$$
+    \mathcal{KL}\left(p || q\right) \geq 0
+$$
+with equality if and only if $$p=q$$.
+
+A quantity related to the the Kullback-Leibler divergence is the cross-entropy defined as
+
+$$
+    H(p,q) = -\mathbb E_{x \sim p}\log q(x)
+$$
+
+From the definition of the Kullback-Leibler divergence, we find
+
+$$
+    \mathcal{KL}\left(p || q\right) = \mathbb E_{x \sim p}\log p(x) - \mathbb E_{x \sim p}\log q(x)
+$$
+
+or
+
+$$
+    H(p,q) = H(p) + \mathcal{KL}\left(p || q\right)
+$$
+
+In particular this means, minimizing the cross-entropy w.r.t. $$q$$ is equivalent to minimizing the Kullback-Leibler divergence.
+
+In a machine learning setting, we have
+
+$$
+    \mathcal{KL}\left(p_{data} || p_\theta\right) = -H[p_{data}] - \langle \log p_\theta\rangle_{data}
+$$
+
+or
+
+$$
+    \langle \log p_\theta(x)\rangle_{data} = - H[p_{data}] - \mathcal{KL}\left(p_{data} || p_\theta\right)
+$$
+
+This shows the equivalence between the maximization of the loglikelihood and the minimization of the Kullback-Leibler divergene.
