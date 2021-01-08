@@ -11,11 +11,11 @@ permalink: /it/
 ## Self Information
 We start our discussion on information theory by defining a completely general term of information $$I(x)$$ by some key properties we know from experience.
 
-Let's consider a single cirumstance described by a random variable $$x$$. If a certain circumstance is completely certain, i.e. $$p(x)=1$$, we know in advance, that this circumstance will happen. Since we were certain in advance, no information was gained by observing it. On the other hand, for low probabilities, the circumstance is very unexpected and by observing this circumstance, we gain a lot of information.
+Let's consider a single circumstance described by a random variable $$x$$. If a certain circumstance is completely certain, i.e. $$p(x)=1$$, we know in advance, that this circumstance will happen. Since we were certain in advance, no information was gained by observing it. On the other hand, for low probabilities, the circumstance is very unexpected and by observing this circumstance, we gain a lot of information.
 
 For two completely independent events, by observing the first event we gain no information about the second event. So by observing the second event we gain the full information from its observation, without any influence from the first event. This implies, that the information gained by observing both events sums up.
 
-The second property might turn our focus to the logarithm function. From the first property, we know that the probabilty alters the gained information.
+The second property might turn our focus to the logarithm function. From the first property, we know that the probability alters the gained information.
 
 The expression $$-\log p(x)$$ fulfills the property of a vanishing gain of information in case of certainty $$p(x)=1$$ and a high information gain for $$p \to 0$$. The second property is fulfilled as well
 
@@ -25,7 +25,7 @@ $$
 
 ## Entropy
 
-As a second quanitity, we introduce the information entropy, or Shannon-entropy, as the expectation value of the information
+As a second quantity, we introduce the information entropy, or Shannon-entropy, as the expectation value of the information
 
 $$
     H_p = \langle I(x) \rangle = - \sum_x p(x) \log p(x)
@@ -33,7 +33,7 @@ $$
 
 The entropy $$H_p$$ can be interpreted as the amount of uncertainty. This interpretation is motivated by three key properties.
 
-Assuming $$\Omega$$ possible states with probabilities $$p(x_k) = p_k$$. Then, the highest uncertainty is given, if each state has equal probability. Consider the case of $$p_k' = 1$$ while the probabilities for the remaining states vanish. Then we are absolutely certain about the state of the system, since state k is the only possible state. In contrast, for equal probabilites the result can be any of the $$\Omega$$ states.
+Assuming $$\Omega$$ possible states with probabilities $$p(x_k) = p_k$$. Then, the highest uncertainty is given, if each state has equal probability. Consider the case of $$p_k' = 1$$ while the probabilities for the remaining states vanish. Then we are absolutely certain about the state of the system, since state k is the only possible state. In contrast, for equal probabilities the result can be any of the $$\Omega$$ states.
 
 For uniformly distributed states, we have $$p_k = \frac{1}{\Omega}$$, $$k=1, ..., \Omega$$
 
@@ -49,7 +49,7 @@ $$
     H_p(p_1, ..., p_\Omega, 0, ...) = H_p(p_1, ..., p_\Omega)
 $$
 
-From the last property follows, that the entropy changes for conditional probabilities. The conditional probability expects certainty for some circumstamces and we gain this certainty by observing them. Intuitively, performing measurements changes the uncertainty of the system.
+From the last property follows, that the entropy changes for conditional probabilities. The conditional probability expects certainty for some circumstamces, and we gain this certainty by observing them. Intuitively, performing measurements changes the uncertainty of the system.
 
 We start from the joint distribution p(A, B) with
 
@@ -75,7 +75,7 @@ $$
     \sum_k p(A_k|B_l) = \sum_k c_{kl} = 1
 $$
 
-Before the measurement of $$B$$, the uncertainty of the sytem is described by $$H_p(A)$$ and $$H_p(B)$$. The joint probability then is given by
+Before the measurement of $$B$$, the uncertainty of the system is described by $$H_p(A)$$ and $$H_p(B)$$. The joint probability then is given by
 
 $$
     p(A, B) = p(c_{11} q_1, ... , c_{\Omega M}q_M)
