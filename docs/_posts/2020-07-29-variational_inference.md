@@ -10,7 +10,7 @@ permalink: /vi/
 
 For many practical models evaluating $$p(Z\|X)$$ is infeasible and approximation schemes are required. There are mainly two types of approximation schemes. The first major group consists of **stochastic approximation schemes** such as Markov Chain Monte Carlo, the second major group is formed by **deterministic approximation schemes**. 
 
-In this section we will introduce a determinisitic method called **variational inference**.
+In this section we will introduce a deterministic method called **variational inference**.
 
 ---
 
@@ -18,7 +18,7 @@ In this section we will introduce a determinisitic method called **variational i
 
 In variational inference, the probability distribution $$p(X)$$ is approximated by a simpler distribution $$q(X)$$ in two steps. First, the functional class of $$q(X)$$ is reduced and afterwards we want to find the best model function $$q^*(X)$$ within this class.
 
-We start from a fully Bayesian model, where all parameters are stochastic, i.e. a prior is given for each parameter. Then we can absorb the stochastic parameters into the latent variables $$Z$$, sucht that they no longer explicitly appear in the notation.
+We start from a fully Bayesian model, where all parameters are stochastic, i.e. a prior is given for each parameter. Then we can absorb the stochastic parameters into the latent variables $$Z$$, such that they no longer explicitly appear in the notation.
 
 The full probability can be rewritten as the expectation value of the conditional probability $$p(X\|Z)$$
 
@@ -45,7 +45,7 @@ Maximizing the lower bound $$\mathcal L(q)$$ w.r.t. $$q$$ is equivalent to minim
 
 The posterior $$p(Z\| X)$$ is expected to be intractable, so we need to apply an approximation to proceed. As mentioned above, we restrict the family of distributions $$q(Z)$$. The goal will be a restriction to a class of tractable distributions.
 
-But before we present possible restrictons, we derive the variational inference from a physical perspective in the next section.
+But before we present possible restrictions, we derive the variational inference from a physical perspective in the next section.
 
 ---
 
@@ -69,7 +69,7 @@ $$
     F = \beta^{-1} \log Z_p(\beta, J) = \langle E(x, J) \rangle_p - \beta^{-1} H_p
 $$
 
-where $$H_p = \langle -\log p \rangle_p$$ ist the entropy.
+where $$H_p = \langle -\log p \rangle_p$$ is the entropy.
 
 Approximating the true distribution $$p$$ by any other distribution $$q$$, we can define the *variational free energy* $$F_q$$
 
@@ -88,4 +88,4 @@ $$
 
 As we made no assumptions about $$q$$ so far, the true free energy $$F$$ is always a lower bound for the variational free energy $$F_q$$.
 
-With help of the prior knowledge from physics we circumvented the less obvious transformation of $$p(x)$$ to an expecation value followed by the application of Jenson's inequality. In addition the tedious calculation for the gap was also skipped.
+With help of the prior knowledge from physics we circumvented the less obvious transformation of $$p(x)$$ to an expectation value followed by the application of Jenson's inequality. In addition, the tedious calculation for the gap was also skipped.

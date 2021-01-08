@@ -8,7 +8,7 @@ permalink: /bi/
 
 ---
 
-We start our discussion on inference with an example given in Mackay (2003) - the burglar alarm. The problem serves well for introducing the fundamental concepts of inference, since we are dealing with binary random variables in a simple probabilistic network. Thus it is possible to solve the problem exactly and directly apply the most important rules to simple expressions.
+We start our discussion on inference with an example given in Mackay (2003) - the burglar alarm. The problem serves well for introducing the fundamental concepts of inference, since we are dealing with binary random variables in a simple probabilistic network. Thus, it is possible to solve the problem exactly and directly apply the most important rules to simple expressions.
 
 ---
 
@@ -65,7 +65,7 @@ Now we can formulate the inference task:
 
 >Receiving a phone call ($$p=1$$), what can we say about the probability of a burglar and an earthquake, i.e. P(b,e;p=1)
 
-For $$p=1$$ we have certainty for $a=1$, then with *Bayes' Theorem* we arrive at
+For $$p=1$$, we have certainty for $a=1$, then with *Bayes' Theorem* we arrive at
 
 $$
     P(b, e|a=1) = \frac{P(a=1|b, e)P(b)P(e)}{P(a=1)}
@@ -73,7 +73,7 @@ $$
 
 The expressions in the numerator, we can read off from the tables above. The unknown marginal probability $$P(a=1)$$ on the other hand is fixed by the normalization constraint.
 
-The probability for a burglar after a phonecall is given by the marginalization over the earthquake variable $$e$$
+The probability for a burglar after a phone call is given by the marginalization over the earthquake variable $$e$$
 
 $$
     P(b|a=1) = \sum_{e={0,1}} P(b,e|a=1)
@@ -86,7 +86,7 @@ $$
 $$
 
 #### Conclusion
-The only accessible variables to Fred at work were the phonecall $$p$$ and the radio $$r$$. But knowing the circumstances summarized in the **belief network** and the probabilities we were able to infer the probability of a burglar or an earthquake.
+The only accessible variables to Fred at work were the phone call $$p$$ and the radio $$r$$. But knowing the circumstances summarized in the **belief network** and the probabilities we were able to infer the probability of a burglar or an earthquake.
 
 In case of few and discrete variables, we are able to completely enumerate all hypotheses and evaluate their probabilities. In continuous hypothesis spaces however, this is no longer feasible. 
 
@@ -96,9 +96,9 @@ $$
     P(x| \mu_1, \sigma_1, \pi_1, \mu_2, \sigma_2, \pi_2) = \pi_1 \mathcal N (x| \mu_1, \sigma_1) + \pi_1 \mathcal N (x| \mu_2, \sigma_2)
 $$
 
-we have 5 independent continuous parameters. As before we could by discretize the space as is needed for working with a computer and again completely enumerate and evaluate.
+we have 5 independent continuous parameters. As before we could discretize the space as is needed for working with a computer and again completely enumerate and evaluate.
 
-To reduce the uncertainty of $$K$$ parameters, we need to grid each dimension. In other words, the cost for grid increases **exponentially** with the dimension of the parameter space. Consequently we need a different approach, which we will discuss below.
+To reduce the uncertainty of $$K$$ parameters, we need to grid each dimension. In other words, the cost for the grid increases **exponentially** with the dimension of the parameter space. Consequently we need a different approach, which we will discuss below.
 
 ## Maximum Likelihood Estimation
 
@@ -108,7 +108,7 @@ $$
     \underset{\theta}{argmax} \log P(X | \theta, \mathcal H)
 $$
 
-The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $$\theta$$ fixed by the real data distribution, the bayesians observe a single fixed dataset $$\mathcal D$$ an infer an uncertainty for the parameter $$\theta$$.
+The concept of maximum likelihood exists in the frequentist as well as in the Bayesian paradigm. While the frequentists assume a single parameter $$\theta$$ fixed by the real data distribution, the bayesians observe a single fixed dataset $$\mathcal D$$ and infer an uncertainty for the parameter $$\theta$$.
 
 ## Maximum A-Posteriori
 
@@ -120,7 +120,7 @@ $$
     P(\theta | X) = \frac{P(X | \theta) P(\theta)}{P(X)}
 $$
 
-Then the the value for $$\theta$$ is given by
+Then the value for $$\theta$$ is given by
 
 $$
     \theta_{MAP} = \underset{\theta}{argmax} P(\theta | X)
@@ -138,7 +138,7 @@ which is called **Bayes estimate**.
 
 ## Regularization
 
-The prior distribution introduces regularization in a natural way. Adding regularization to the cost function constrains the magnitude of the parameters. The same can be achieved by a the prior $$p(\theta)$$ in a bayesian model, forcing smaller magnitudes by a higher probability around the origin.
+The prior distribution introduces regularization naturally. Adding regularization to the cost function constrains the magnitude of the parameters. The same can be achieved by the prior $$p(\theta)$$ in a bayesian model, forcing smaller magnitudes by a higher probability around the origin.
 
 As an example, we consider a prior distribution $$p(\theta) = \mathcal N(\theta; 0, I/\lambda)$$, leading to the followingt logposterior
 

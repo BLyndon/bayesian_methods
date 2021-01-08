@@ -14,12 +14,12 @@ $$
     p(x) = \sum_z p(x, z)
 $$
 
-The complex distribution over the observables $$p(x)$$ then is constructed by simpler additive components $$p(x, z)$$. In case of continuous latent variables, the sum is replaced by an integral. Continuous latent variables are closely related to manifold lerning, where the all the data lies close to a manifold of much lower dimensionality. For example a translation of pixels of an image can be described by a latent variable.
+The complex distribution over the observables $$p(x)$$ then is constructed by simpler additive components $$p(x, z)$$. In case of continuous latent variables, the sum is replaced by an integral. Continuous latent variables are closely related to manifold learning, where the all the data lies close to a manifold of much lower dimensionality. For example a translation of pixels of an image can be described by a latent variable.
 
 ### Examples
 {: .no_toc}
 + clustering
-+ topic modeling
++ topic modelling
 + blind source separation
 + dimensional reduction
 
@@ -31,11 +31,11 @@ In many cases, the latent variables can be interpreted. In case of clustering, t
 
 ### Training
 {: .no_toc}
-The latent variables are completely unobservable and must be inferred from the observed data. An important training method for latent variable models is the expectation maximation algorithm.
+The latent variables are completely unobservable and must be inferred from the observed data. An important training method for latent variable models is the expectation maximization algorithm.
 
 ---
 
-## General Expectation Maximation Algorithm
+## General Expectation Maximization Algorithm
 
 During the training of a model, the parameter $$\theta$$ is tuned to maximize the likelihood $$p(X\|\theta)$$ of the observed dataset.
 
@@ -51,7 +51,7 @@ $$
     \log p(X|\theta) = \sum_{i} \log \sum_{c}q(t_i=c) \frac{p(x_i, t_i=c| \theta)}{q(t_i=c)} = \sum_i \log \left \langle \frac{p(X,t_i|\theta)}{q(t_i)} \right\rangle_{q(t)}
 $$
 
-By this trick, Jenson inequality is applicable and we find a lower bound $$\mathcal L(\theta, q)$$
+By this trick, Jenson inequality is applicable, and we find a lower bound $$\mathcal L(\theta, q)$$
 
 $$
     \log p(X|\theta) = \sum_i \log \left \langle \frac{p(X,t_i|\theta)}{q(t_i)} \right\rangle_{q(t)} \geq \sum_i \left \langle \log \left( \frac{p(X,t_i|\theta)}{q(t_i)}\right) \right \rangle_{q(t)}
@@ -94,9 +94,9 @@ $$
 
 ## Application: Gaussian Mixture Models
 
-An implementation of the EM method for gaussian mixture models can be found [here](https://github.com/BLyndon/bayesian_methods/blob/master/notebooks/GMM-EM.ipynb).
+An implementation of the EM method for Gaussian mixture models can be found [here](https://github.com/BLyndon/bayesian_methods/blob/master/notebooks/GMM-EM.ipynb).
 
-As a special case, a known training method for gaussian mixture models (GMM) is derived from the general EM principle. For a GMM the likelihood is given by a weighted sum of Gaussians
+As a special case, a known training method for Gaussian mixture models (GMM) is derived from the general EM principle. For a GMM the likelihood is given by a weighted sum of Gaussians
 
 $$
     p(X|\theta) = \sum_c \pi_c \mathcal N (X; \mu_c, \sigma_c)
@@ -116,7 +116,7 @@ $$
 \end{aligned}
 $$
 
-In the expectation step we want to minimize the Kullback-Leibler divergence by setting the prior $$q^{k1}(t_i)$$ to the posterior $$p(t_i \|x_i, \theta^k)$$. After applying the Bayes formular to the likelihood $$p(x_i \| t_i = c, \theta)$$ we have
+In the expectation step we want to minimize the Kullback-Leibler divergence by setting the prior $$q^{k1}(t_i)$$ to the posterior $$p(t_i \|x_i, \theta^k)$$. After applying the Bayes formula to the likelihood $$p(x_i \| t_i = c, \theta)$$ we have
 
 $$
     \gamma_{ic} = \frac{\pi_c \mathcal N (x_i; \mu_c, \Sigma_c)}{\sum_{c=1} \pi_c \mathcal N (x_i; \mu_c, \Sigma_c)}
@@ -134,7 +134,7 @@ $$
     y_{ic} = \log \pi_c -\frac 1 2 \left(({x_i}-{\mu_c})^\mathrm{T}{\Sigma_c}^{-1}({x_i}-{\mu_c}) + d \log 2 \pi + \log \det \Sigma_c \right)
 $$
 
-### Maximation Step
+### Maximization Step
 
 In the maximization step the prior given by the expectation step is maximized w.r.t. $$\theta$$.
 
@@ -144,7 +144,7 @@ $$
 \end{aligned}
 $$
 
-In case of a  GMM, this can be done analytically by solving the following equations
+In the case of a  GMM, this can be done analytically by solving the following equations
 
 $$
 \begin{aligned}
@@ -153,7 +153,7 @@ $$
 \end{aligned}
 $$
 
-Additionally the priors $$p(t_i = c) = \pi_c$$ need to be updated by solving
+Additionally, the priors $$p(t_i = c) = \pi_c$$ need to be updated by solving
 
 $$
     \nabla_{\nu} \left( \sum_{ic}  \gamma_{ic} \log \pi_c - \lambda \left(\sum_c \pi_c -1 \right)\right) = 0, \quad \nu = \pi_1, \pi_2, \pi_3, \lambda

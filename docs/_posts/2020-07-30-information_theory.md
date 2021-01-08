@@ -84,7 +84,7 @@ $$
 Measuring $$B$$ decreases the uncertainty by $$H_p(B)$$ and we have
 
 $$
-    p(A|B) = p(c1l, . . . , cΩl)
+    p(A|B) = p(c_{1l}, . . . , c_{Ωl})
 $$
 
 
