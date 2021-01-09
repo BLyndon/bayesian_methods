@@ -101,7 +101,7 @@ $$
     \mathcal{KL}\left(p || q\right) = \mathbb E_{x \sim p}\left[\log \frac{p(x)}{q(x)}\right]
 $$
 
-Note, the Kullback-Leibler divergence is neither symmetric nor does it satisfy the triangle inequality. Therefore, it is not a metric and cannot be interpreted as distance.
+Note, the Kullback-Leibler divergence is neither symmetric nor does it satisfy the triangle inequality. Therefore, it is not a metric and cannot be interpreted as a distance.
 
 The most important property is the non-negativity
 $$
@@ -109,7 +109,7 @@ $$
 $$
 with equality if and only if $$p=q$$.
 
-A quantity related to the the Kullback-Leibler divergence is the cross-entropy defined as
+A quantity related to the Kullback-Leibler divergence is the cross-entropy defined as
 
 $$
     H(p,q) = -\mathbb E_{x \sim p}\log q(x)
@@ -141,4 +141,10 @@ $$
     \langle \log p_\theta(x)\rangle_{data} = - H[p_{data}] - \mathcal{KL}\left(p_{data} || p_\theta\right)
 $$
 
-This shows the equivalence between the maximization of the loglikelihood and the minimization of the Kullback-Leibler divergene.
+This shows the equivalence between the maximization of the loglikelihood and the minimization of the Kullback-Leibler divergence.
+
+## Sources
+
++ [*MacKay (2003)* Information Theory, Inference, Learning](http://www.inference.org.uk/mackay/itprnn/book.html)
++ [*Sethna (2005)* Statistical Mechanics: Entropy, Order Parameters and Complexity](http://sethna.lassp.cornell.edu/statistical_mechanics_entropy_order_parameters_and_complexity)
++ [*Mehta et al.* A high-bias, low-variance introduction to Machine Learning for physicists ](https://www.sciencedirect.com/science/article/pii/S0370157319300766)
