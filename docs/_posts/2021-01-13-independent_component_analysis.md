@@ -7,11 +7,11 @@ permalink: /ica/
 {:toc}
 
 ---
-Here we cast the problem of source separation as a latent variable model and derive the ideas leading to a solution for an environment without noise and reverberation
+Here we cast the problem of source separation as a latent variable model and derive the ideas leading to a solution for an environment without noise and reverberation.
 
 # Blind Source Separation
 
-Consider a fixed setting of $$I$$ receivers and $$J$$ sources, denoted by $$x_j$$, $$s_i$$ resp.
+Consider a fixed setting of $$I$$ receivers and $$J$$ sources, denoted by $$x_j$$, $$s_i$$ respectively.
 
 Assuming the mixed signal $$x_i$$ at receiver $$i$$ is a linear superposition of $$I$$ unknown sources {$$s_n$$}
 
@@ -19,7 +19,7 @@ $$
     x_i(t) = \sum_j A_{ij} s_j(t),\quad \text{for all }t
 $$
 
-Or written as matrix equation
+or written as matrix equation
 
 $$
     x(t) = A s(t),\quad \text{for all }t
@@ -36,7 +36,7 @@ $$
 Before we get into the solution of the problem, we would first like to point out two problems.
 
 ### Scaling Ambiguity
-By simultanously scaling the signals $$s_n$$ by a factor $$c$$ and the mixing matrix $$A_{mn}$$ by a factor $$1/c$$, these factors cancel out and superposition does not change. But the magnitude of the separated signals will change.
+By simultaneously scaling the signals $$s_n$$ by a factor $$c$$ and the mixing matrix $$A_{mn}$$ by a factor $$1/c$$, these factors cancel out and superposition does not change. But the magnitude of the separated signals will change.
 
 (e.g. signal damping)
 
