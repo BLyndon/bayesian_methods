@@ -48,23 +48,31 @@ The order of the sources is interchangeable, since the order of the terms in the
 # Blind Source Separation as a Latent Variable Model
 By representing the problem as a latent variable model, we have the ability to learn the matrix $$W$$ from a data set $$D=\{x^{(n)}\}_{n=1}^N$$, where $$x^{(n)}=x(t_n)$$ for $$N$$ discrete data points.
 To do this, we set up the likelihood function p(D|W), where the matrix $$W$$ is fixed by the system described above and maximize this function with respect to the matrix $$W$$. Assuming an iid. data set, we have
+
 $$
     p(D|W) = \prod_n p(x^{(n)}|W)
 $$
+
 and further
+
 $$
     p(x^{(n)}|W)  = \int d^I s^{(n)} p(x^{(n)}, s^{(n)}|W)
 $$
+
 Using the superposition of signals, we have $$p(x^{(n)}|s^{(n)},W)=\prod_j \delta(x_j^{(n)} - \sum_i W_{ij}s_j^{(n)})$$ and thus
+
 $$
 \begin{aligned}
     p(x^{(n)}, s^{(n)}|W) & = p(x^{(n)}|s^{(n)},W)p(s^{(n)}) \\ & = \prod_j \delta(x_j^{(n)} - \sum_i W_{ij}s_j^{(n)}) \prod_j p(s_j^{(n)})
 \end{aligned}
 $$
+
 Finally, we have
+
 $$
     p(x^{(n)}|W) = \det W \prod_j p_i(W_{ij}x_j)
 $$
+
 Now after specifying $$p_i(s_i)$$ we can maximize the loglikelihood using gradient descent w.r.t. the matrix $$W$$.
 
 ## Sources
