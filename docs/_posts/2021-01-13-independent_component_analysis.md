@@ -63,7 +63,7 @@ Using the superposition of signals, we have $$p(x^{(n)}\|s^{(n)},W)=\prod_j \del
 
 $$
 \begin{aligned}
-    p(x^{(n)}, s^{(n)}|W) & = p(x^{(n)}|s^{(n)},W)p(s^{(n)}) \\ & = \prod_j \delta(x_j^{(n)} - \sum_i W_{ij}s_j^{(n)}) \prod_j p(s_j^{(n)})
+    p(x^{(n)}, s^{(n)}|W) & = p(x^{(n)}|s^{(n)},W)p(s^{(n)}) \\ & = \prod_j \delta(x_j^{(n)} - \sum_i W_{ji}s_i^{(n)}) \prod_j p(s_j^{(n)})
 \end{aligned}
 $$
 
