@@ -59,7 +59,7 @@ $$
     p(x^{(n)}|W)  = \int d^I s^{(n)} p(x^{(n)}, s^{(n)}|W)
 $$
 
-Using the superposition of signals, we have $$p(x^{(n)}|s^{(n)},W)=\prod_j \delta(x_j^{(n)} - \sum_i W_{ij}s_j^{(n)})$$ and thus
+Using the superposition of signals, we have $$p(x^{(n)}\|s^{(n)},W)=\prod_j \delta(x_j^{(n)} - \sum_i W_{ij}s_j^{(n)})$$ and thus
 
 $$
 \begin{aligned}
