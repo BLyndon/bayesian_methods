@@ -1,3 +1,5 @@
 # Bayesian Methods for Machine Learning
 
-Visit the [introduction](https://blyndon.github.io/bayesian_methods/) to learn about the mathmatical background.
+Introduction to the concepts of Bayesian machine learning
++ [Bayesian Inference](https://blyndon.github.io/bayesian_methods/)
+
