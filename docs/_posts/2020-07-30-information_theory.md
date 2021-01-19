@@ -20,7 +20,9 @@ The second property might turn our focus to the logarithm function. From the fir
 The expression $$-\log p(x)$$ fulfills the property of a vanishing gain of information in case of certainty $$p(x)=1$$ and a high information gain for $$p \to 0$$. The second property is fulfilled as well
 
 $$
-    I(x, x') = - \log p(x, x') = - \log p(x)p(x') = -\log p(x) - \log p(x') = I(x) + I(x')
+\begin{aligned}
+    I(x, x') & = - \log p(x, x') \\ & = - \log p(x)p(x') \\ & = -\log p(x) - \log p(x') \\ & = I(x) + I(x')
+\end{aligned}
 $$
 
 ## Information Entropy
@@ -147,4 +149,4 @@ This shows the equivalence between the maximization of the loglikelihood and the
 
 + [*MacKay (2003)* Information Theory, Inference, Learning](http://www.inference.org.uk/mackay/itprnn/book.html)
 + [*Sethna (2005)* Statistical Mechanics: Entropy, Order Parameters and Complexity](http://sethna.lassp.cornell.edu/statistical_mechanics_entropy_order_parameters_and_complexity)
-+ [*Mehta et al.* A high-bias, low-variance introduction to Machine Learning for physicists ](https://www.sciencedirect.com/science/article/pii/S0370157319300766)
++ [*Mehta et al (2019).* A high-bias, low-variance introduction to Machine Learning for physicists](https://www.sciencedirect.com/science/article/pii/S0370157319300766)
